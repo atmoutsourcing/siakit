@@ -5,11 +5,11 @@ import 'react-day-picker/dist/style.css';
 import { StyledToastContainer } from '../components/Toast';
 import { ThemeProvider } from './theme';
 
-type SiakitProviderProps = {
+type ProviderProps = {
   children: ReactNode;
 };
 
-export function SiakitProvider({ children }: SiakitProviderProps): JSX.Element {
+export function Provider({ children }: ProviderProps): JSX.Element {
   return (
     <ThemeProvider>
       <StyledToastContainer />

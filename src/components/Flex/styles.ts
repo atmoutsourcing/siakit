@@ -11,12 +11,15 @@ export type ContainerProps = {
     | 'space-around';
   align?: 'stretch' | 'flex-start' | 'flex-end' | 'center' | 'baseline';
 
-  gap?: boolean | number;
+  gap?: boolean | number | string;
   padding?: boolean | number | string;
   margin?: boolean | number | string;
 
   width?: number | string;
   height?: number | string;
+
+  maxWidth?: number | string;
+  maxHeight?: number | string;
 
   overflow?: boolean | 'auto' | 'hidden';
 };
@@ -54,10 +57,25 @@ export const Container = styled.div<ContainerProps>`
       flex: ${typeof flex === 'boolean' ? 1 : flex};
     `}
 
+    ${({ gap }) =>
+    gap &&
+    typeof gap === 'boolean' &&
+    css`
+      gap: 16px;
+    `}
+
   ${({ gap }) =>
     gap &&
+    typeof gap === 'number' &&
     css`
-      gap: ${typeof gap === 'boolean' ? '16px' : `${gap}px`};
+      gap: ${gap}px;
+    `}
+
+  ${({ gap }) =>
+    gap &&
+    typeof gap === 'string' &&
+    css`
+      gap: ${gap};
     `}
 
   ${({ padding }) =>
@@ -114,5 +132,19 @@ export const Container = styled.div<ContainerProps>`
     css`
       max-height: ${typeof height === 'string' ? height : `${height}px`};
       height: ${typeof height === 'string' ? height : `${height}px`};
+    `}
+
+    ${({ maxWidth }) =>
+    maxWidth &&
+    css`
+      max-width: ${typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`};
+    `}
+
+    ${({ maxHeight }) =>
+    maxHeight &&
+    css`
+      max-height: ${typeof maxHeight === 'string'
+        ? maxHeight
+        : `${maxHeight}px`};
     `}
 `;
