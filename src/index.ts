@@ -12,6 +12,7 @@ export { Card } from './components/Card';
 
 export { Modal } from './components/Modal';
 export { Tooltip } from './components/Tooltip';
+export { Dialog } from './components/Dialog';
 
 export { Badge } from './components/Badge';
 export { toast } from './components/Toast';
