@@ -10,6 +10,7 @@ export { Grid } from './components/Grid';
 export { Sidebar } from './components/Sidebar';
 export { Card } from './components/Card';
 
+export { Modal } from './components/Modal';
 export { Tooltip } from './components/Tooltip';
 
 export { Badge } from './components/Badge';
