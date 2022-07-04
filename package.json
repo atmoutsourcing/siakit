@@ -15,7 +15,19 @@
     "react-dom": "^18.0.0",
     "react-icons": "^4.4.0",
     "react-toastify": "^9.0.5",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "@radix-ui/react-accordion": "^0.1.6",
+    "@radix-ui/react-aspect-ratio": "^0.1.4",
+    "@radix-ui/react-checkbox": "^0.1.5",
+    "@radix-ui/react-dialog": "^0.1.7",
+    "@radix-ui/react-dropdown-menu": "^0.1.6",
+    "@radix-ui/react-hover-card": "^0.1.5",
+    "@radix-ui/react-popover": "^0.1.6",
+    "@radix-ui/react-radio-group": "^0.1.5",
+    "@radix-ui/react-slider": "^0.1.4",
+    "@radix-ui/react-switch": "^0.1.5",
+    "@radix-ui/react-tabs": "^0.1.5",
+    "@radix-ui/react-tooltip": "^0.1.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
@@ -39,6 +51,18 @@
     "react-day-picker": "^8.0.7",
     "react-icons": "^4.4.0",
     "react-toastify": "^9.0.5",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "@radix-ui/react-accordion": "^0.1.6",
+    "@radix-ui/react-aspect-ratio": "^0.1.4",
+    "@radix-ui/react-checkbox": "^0.1.5",
+    "@radix-ui/react-dialog": "^0.1.7",
+    "@radix-ui/react-dropdown-menu": "^0.1.6",
+    "@radix-ui/react-hover-card": "^0.1.5",
+    "@radix-ui/react-popover": "^0.1.6",
+    "@radix-ui/react-radio-group": "^0.1.5",
+    "@radix-ui/react-slider": "^0.1.4",
+    "@radix-ui/react-switch": "^0.1.5",
+    "@radix-ui/react-tabs": "^0.1.5",
+    "@radix-ui/react-tooltip": "^0.1.7"
   }
 }
