@@ -35,6 +35,7 @@ export { Modal } from './components/Modal';
 export { Tooltip } from './components/Tooltip';
 export { Dialog } from './components/Dialog';
 export { Dropdown, DropdownContent, DropdownItem, DropdownSeparator, DropdownTitle } from './components/Dropdown';
+export { Select, SelectMulti, Checkbox, Color, DatePicker, Input, Language, Mask, Money, Number, Password, Phone, Radio, Slider, Switch, TextArea, TimePicker } from './components/Form';
 
 export { Badge } from './components/Badge';
 export { toast } from './components/Toast';
