@@ -41,5 +41,6 @@ export { Badge } from './components/Badge';
 export { toast } from './components/Toast';
 
 export { usePersistedState } from './hooks/usePersistedState';
+export { useTheme } from './hooks/theme';
 
 export { Provider } from './hooks'
