@@ -80,7 +80,7 @@ export function Select({
         colorScheme={colorScheme}
         isErrored={!!error}
         value={selected}
-        onChange={(option) => {
+        onChange={(option: any) => {
           setSelected(option as Option);
         }}
         isClearable

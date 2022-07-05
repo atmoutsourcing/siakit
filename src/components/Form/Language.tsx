@@ -129,7 +129,7 @@ export function Language({
         colorScheme={colorScheme}
         isErrored={!!error}
         value={selected}
-        onChange={(option) => setSelected(option as Option)}
+        onChange={(option: any) => setSelected(option as Option)}
         isClearable
         formatOptionLabel={formatOptionLabel}
       />
