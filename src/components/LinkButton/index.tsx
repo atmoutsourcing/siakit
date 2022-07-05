@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { icons } from '../../helpers/icons';
+import * as icons from '../../helpers/icons';
 import { Colors, useTheme } from '../../hooks/theme';
 import { Heading } from '../Heading';
 import { Container, Size } from './styles';

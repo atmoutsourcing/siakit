@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-import { icons } from '../../helpers/icons';
+import * as icons from '../../helpers/icons';
 import { Colors, useTheme } from '../../hooks/theme';
 import { Size, Variant, Container } from './styles';
 

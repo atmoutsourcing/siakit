@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { icons } from '../../helpers/icons';
+import * as icons from '../../helpers/icons';
 
 type IconProps = {
   name: keyof typeof icons;
