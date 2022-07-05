@@ -1,7 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 
-import * as ReactIcons from 'react-icons/all';
-
+import { icons } from '../../../helpers/icons';
 import { useTheme } from '../../../hooks/theme';
 import { Tooltip } from '../../Tooltip';
 import { SidebarContext } from '../SidebarContext';
@@ -12,8 +11,8 @@ type MenuItemProps = {
   value: string;
 
   onClick?: () => void;
-  icon?: keyof typeof ReactIcons;
-  activeIcon?: keyof typeof ReactIcons;
+  icon?: keyof typeof icons;
+  activeIcon?: keyof typeof icons;
 
   tooltip?: string;
 };
@@ -38,8 +37,8 @@ export function MenuItem({
 
   const shortName = children[0].toUpperCase();
 
-  const Icon = icon ? ReactIcons[icon] : undefined;
-  const ActiveIcon = activeIcon ? ReactIcons[activeIcon] : undefined;
+  const Icon = icon ? icons[icon] : undefined;
+  const ActiveIcon = activeIcon ? icons[activeIcon] : undefined;
 
   return (
     <Tooltip content={!isExpanded ? tooltip : undefined} side="right">

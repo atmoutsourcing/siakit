@@ -1,7 +1,6 @@
 import React from 'react';
 
-import * as ReactIcons from 'react-icons/all';
-
+import { icons } from '../../helpers/icons';
 import { Colors, useTheme } from '../../hooks/theme';
 import { Heading } from '../Heading';
 import { Container, Size } from './styles';
@@ -13,7 +12,7 @@ type LinkButtonProps = {
   size?: Size;
   onClick: () => void;
   disabled?: boolean;
-  icon?: keyof typeof ReactIcons;
+  icon?: keyof typeof icons;
 };
 
 export function LinkButton({
@@ -27,7 +26,7 @@ export function LinkButton({
 }: LinkButtonProps): JSX.Element {
   const { colorScheme: themeColorScheme } = useTheme();
 
-  const Icon = icon ? ReactIcons[icon] : undefined;
+  const Icon = icon ? icons[icon] : undefined;
 
   return (
     <Container

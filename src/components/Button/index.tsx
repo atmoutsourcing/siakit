@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 
-import * as ReactIcons from 'react-icons/all';
-
+import { icons } from '../../helpers/icons';
 import { Colors, useTheme } from '../../hooks/theme';
 import { Heading } from '../Heading';
 import { Container, Size, Variant } from './styles';
@@ -14,7 +13,7 @@ type ButtonProps = {
   variant?: Variant;
   onClick?: () => void;
   disabled?: boolean;
-  icon?: keyof typeof ReactIcons;
+  icon?: keyof typeof icons;
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -46,7 +45,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       return 16;
     }
 
-    const Icon = icon ? ReactIcons[icon] : undefined;
+    const Icon = icon ? icons[icon] : undefined;
 
     return (
       <Container

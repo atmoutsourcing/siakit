@@ -1,14 +1,14 @@
 import React from 'react';
 
-import * as ReactIcons from 'react-icons/all';
+import { icons } from '../../helpers/icons';
 
 type IconProps = {
-  name: keyof typeof ReactIcons;
+  name: keyof typeof icons;
   size?: string | number | undefined;
 };
 
 export function Icon({ name, size }: IconProps): JSX.Element {
-  const IconRender = ReactIcons[name] as any;
+  const IconRender = icons[name] as any;
 
   return <IconRender size={size} />;
 }

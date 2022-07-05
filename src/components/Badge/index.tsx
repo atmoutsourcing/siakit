@@ -1,18 +1,17 @@
 import React from 'react';
 
-import * as ReactIcons from 'react-icons/all';
-
+import { icons } from '../../helpers/icons';
 import { Colors } from '../../hooks/theme';
 import { Container } from './styles';
 
 type BadgeProps = {
   color: Colors;
   children: string;
-  icon?: keyof typeof ReactIcons;
+  icon?: keyof typeof icons;
 };
 
 export function Badge({ color, children, icon }: BadgeProps): JSX.Element {
-  const Icon = icon ? ReactIcons[icon] : undefined;
+  const Icon = icon ? icons[icon] : undefined;
 
   return (
     <Container color={color}>
