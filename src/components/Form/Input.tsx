@@ -44,7 +44,7 @@ export function Input({
         return ref.current.value;
       },
       setValue: (ref, value: string) => {
-        handleChange(value);
+        handleChange(typeof value === 'string' ? value : String(value));
       },
       clearValue: (ref) => {
         ref.current.value = '';
