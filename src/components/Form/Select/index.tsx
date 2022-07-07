@@ -63,7 +63,7 @@ export function Select({
         setSelected(null);
       },
     });
-  }, [fieldName, registerField, selected, returnType]);
+  }, [fieldName, registerField, selected, returnType, options]);
 
   return (
     <InputContainer disabled={!!disabled}>
