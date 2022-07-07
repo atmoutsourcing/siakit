@@ -56,12 +56,20 @@ export function Select({
           if (typeof value === 'object') {
             setSelected(value);
 
+            if (onChange) {
+              onChange(value.value);
+            }
+
             return;
           }
 
           const findOption = ref.props?.options.find(
             (option: Option) => option.value === value,
           );
+
+          if (onChange) {
+            onChange(findOption.value);
+          }
 
           if (findOption) {
             setSelected(findOption);
