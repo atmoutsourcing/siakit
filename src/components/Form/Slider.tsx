@@ -105,7 +105,13 @@ export function Slider({
       )}
 
       <Flex align="center">
-        <Container value={value} onValueChange={setValue} min={min} max={max}>
+        <Container
+          value={value}
+          onValueChange={setValue}
+          min={min}
+          max={max}
+          disabled={disabled}
+        >
           <Track>
             <Range colorsScheme={colorScheme} />
           </Track>

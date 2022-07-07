@@ -94,6 +94,7 @@ export function Switch({ name, label, disabled }: SwitchProps): JSX.Element {
           checked={checked}
           onCheckedChange={setChecked}
           id={name}
+          disabled={disabled}
         >
           <SwitchThumb />
         </SwitchContainer>

@@ -8,52 +8,6 @@ import { Colors, useTheme } from '../../hooks/theme';
 import { Flex } from '../Flex';
 import { InputContainer, Label, CheckboxBody, Error } from './styles';
 
-type RadioContainerProps = {
-  checked: boolean;
-  colorScheme: Colors;
-};
-
-const RadioContainer = styled.button<RadioContainerProps>`
-  all: unset;
-
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  > div {
-    width: 16px;
-    height: 16px;
-    border-radius: 8px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: ${({ theme, checked, colorScheme }) =>
-      checked ? theme.colors[colorScheme][9] : theme.colors.gray[4]};
-
-    span {
-      display: ${({ checked }) => (checked ? 'block' : 'none')};
-      width: 8px;
-      height: 8px;
-      border-radius: 4px;
-      background-color: ${({ theme }) => theme.colors.white};
-    }
-  }
-
-  p {
-    font-size: 14px;
-
-    color: ${({ theme }) => theme.colors.gray[12]};
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-`;
-
 type Option = {
   value: string;
   label: string;
@@ -155,6 +109,7 @@ export function Radio({
                 value={option.value}
                 id={option.value}
                 colorScheme={colorScheme}
+                disabled={disabled}
               >
                 <RadioGroupIndicator />
               </RadioGroupItem>

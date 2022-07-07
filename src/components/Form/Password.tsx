@@ -44,8 +44,8 @@ export function Password({
       getValue: (ref) => {
         return ref.current.value;
       },
-      setValue: (ref, value: string) => {
-        handleChange(value);
+      setValue: (_, value: string) => {
+        handleChange(String(value));
       },
       clearValue: (ref) => {
         ref.current.value = '';
@@ -111,6 +111,7 @@ export function Password({
           colorScheme="gray"
           onClick={() => setIsHidden((prevState) => !prevState)}
           tabIndex={-1}
+          disabled={disabled}
         />
       </InputBody>
 

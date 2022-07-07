@@ -43,8 +43,8 @@ export function Input({
       getValue: (ref) => {
         return ref.current.value;
       },
-      setValue: (ref, value: string) => {
-        handleChange(typeof value === 'string' ? value : String(value));
+      setValue: (_, value: string) => {
+        handleChange(String(value));
       },
       clearValue: (ref) => {
         ref.current.value = '';

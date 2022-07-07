@@ -1,27 +1,13 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
-import * as Popover from '@radix-ui/react-popover';
 import { useField } from '@unform/core';
-import { HiOutlineCheck, HiOutlineChevronDown } from 'react-icons/hi';
-import styled from 'styled-components';
 
 import brasilFlag from '../../assets/flags/brasil.png';
 import espanhaFlag from '../../assets/flags/espanha.png';
 import estadosunidosFlag from '../../assets/flags/estadosunidos.png';
 import { useTheme } from '../../hooks/theme';
-import { Flex } from '../Flex';
-import { IconButton } from '../IconButton';
-import { Text } from '../Text';
 import { Container } from './Select/styles';
-import {
-  ColorContainer,
-  Label,
-  InputBody,
-  Error,
-  ChevronButton,
-  LanguageItem,
-  InputContainer,
-} from './styles';
+import { Label, Error, LanguageItem, InputContainer } from './styles';
 
 interface Props {
   name: string;
@@ -37,21 +23,6 @@ type Option = {
   label: string;
   flag: string;
 };
-
-const Card = styled(Popover.Content)`
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.cardBackground};
-  box-shadow: ${({ theme }) => theme.shadows.sm};
-  border: 1px solid ${({ theme }) => theme.colors.gray[3]};
-
-  padding: 8px 0;
-
-  display: flex;
-  flex-direction: column;
-
-  width: 240px;
-  outline: unset;
-`;
 
 const options = [
   { label: 'Português do Brasil', value: 'pt_BR', flag: brasilFlag },
@@ -129,9 +100,10 @@ export function Language({
         colorScheme={colorScheme}
         isErrored={!!error}
         value={selected}
-        onChange={(option: any) => setSelected(option as Option)}
+        onChange={(option) => setSelected(option as Option)}
         isClearable
         formatOptionLabel={formatOptionLabel}
+        isDisabled={disabled}
       />
 
       {error && <Error>{error}</Error>}

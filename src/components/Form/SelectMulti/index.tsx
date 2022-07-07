@@ -84,11 +84,12 @@ export function SelectMulti({
         colorScheme={colorScheme}
         isErrored={!!error}
         value={selected}
-        onChange={(option: any) => {
+        onChange={(option) => {
           setSelected(option as Option[]);
         }}
         isClearable
         isMulti
+        isDisabled={disabled}
       />
 
       {error && <Error>{error}</Error>}

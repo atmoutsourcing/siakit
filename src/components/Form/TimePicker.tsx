@@ -177,7 +177,7 @@ export function TimePicker({
           />
         )}
         <Popover.Root>
-          <TriggerButton tabIndex={-1}>
+          <TriggerButton tabIndex={-1} disabled={disabled}>
             <HiClock size="16" />
           </TriggerButton>
 
