@@ -1,21 +1,14 @@
 import { createGlobalStyle } from 'styled-components';
 
 import { Colors } from '.';
-import InterBlack from '../../assets/fonts/inter/Inter-Black.ttf';
-import InterBold from '../../assets/fonts/inter/Inter-Bold.ttf';
-import InterExtraBold from '../../assets/fonts/inter/Inter-ExtraBold.ttf';
-import InterExtraLight from '../../assets/fonts/inter/Inter-ExtraLight.ttf';
-import InterLight from '../../assets/fonts/inter/Inter-Light.ttf';
-import InterMedium from '../../assets/fonts/inter/Inter-Medium.ttf';
-import InterRegular from '../../assets/fonts/inter/Inter-Regular.ttf';
-import InterSemiBold from '../../assets/fonts/inter/Inter-SemiBold.ttf';
-import InterThin from '../../assets/fonts/inter/Inter-Thin.ttf';
 
 type GlobalStyleProps = {
   colorScheme: Colors;
 };
 
 export const GlobaStyle = createGlobalStyle<GlobalStyleProps>`
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
   :root {
     --rdp-cell-size: 40px;
   }
@@ -41,52 +34,6 @@ export const GlobaStyle = createGlobalStyle<GlobalStyleProps>`
     background-color: ${({ theme, colorScheme }) =>
       theme.colors[colorScheme][5]};
     color: ${({ theme, colorScheme }) => theme.colors[colorScheme][12]};
-  }
-
-  @font-face {
-    font-family: 'Inter';
-    src: local('Inter'), url(${InterThin}) format("truetype");
-    font-weight: 100;
-  }
-  @font-face {
-    font-family: 'Inter';
-    src: local('Inter'), url(${InterExtraLight}) format("truetype");
-    font-weight: 200;
-  }
-  @font-face {
-    font-family: 'Inter';
-    src: local('Inter'), url(${InterLight}) format("truetype");
-    font-weight: 300;
-  }
-  @font-face {
-    font-family: 'Inter';
-    src: local('Inter'), url(${InterRegular}) format("truetype");
-    font-weight: 400;
-  }
-  @font-face {
-    font-family: 'Inter';
-    src: local('Inter'), url(${InterMedium}) format("truetype");
-    font-weight: 500;
-  }
-  @font-face {
-    font-family: 'Inter';
-    src: local('Inter'), url(${InterSemiBold}) format("truetype");
-    font-weight: 600;
-  }
-  @font-face {
-    font-family: 'Inter';
-    src: local('Inter'), url(${InterBold}) format("truetype");
-    font-weight: 700;
-  }
-  @font-face {
-    font-family: 'Inter';
-    src: local('Inter'), url(${InterExtraBold}) format("truetype");
-    font-weight: 800;
-  }
-  @font-face {
-    font-family: 'Inter';
-    src: local('Inter'), url(${InterBlack}) format("truetype");
-    font-weight: 900;
   }
 
   * {
