@@ -42,12 +42,12 @@ export function Select({
     registerField<Option | string | number>({
       name: fieldName,
       ref: selectRef.current,
-      getValue: () => {
+      getValue: (ref) => {
         if (returnType === 'option') {
-          return selected || '';
+          return ref.props.value || '';
         }
 
-        return selected?.value || '';
+        return ref.props.value?.value || '';
       },
       setValue: (ref, value: Option | string | number) => {
         if (ref.props?.options) {
