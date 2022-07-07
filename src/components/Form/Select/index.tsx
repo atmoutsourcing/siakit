@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useField } from '@unform/core';
 
@@ -30,6 +30,8 @@ export function Select({
 }: SelectProps): JSX.Element {
   const { colorScheme } = useTheme();
 
+  const selectRef = useRef(null);
+
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
   const [selected, setSelected] = useState<Option | null>(
@@ -39,6 +41,7 @@ export function Select({
   useEffect(() => {
     registerField<Option | string | number>({
       name: fieldName,
+      ref: selectRef.current,
       getValue: () => {
         if (returnType === 'option') {
           return selected || '';
@@ -46,17 +49,21 @@ export function Select({
 
         return selected?.value || '';
       },
-      setValue: (_, value: Option | string | number) => {
-        if (typeof value === 'object') {
-          setSelected(value);
+      setValue: (ref, value: Option | string | number) => {
+        if (ref.props?.options) {
+          if (typeof value === 'object') {
+            setSelected(value);
 
-          return;
-        }
+            return;
+          }
 
-        const findOption = options.find((option) => option.value === value);
+          const findOption = ref.props?.options.find(
+            (option: Option) => option.value === value,
+          );
 
-        if (findOption) {
-          setSelected(findOption);
+          if (findOption) {
+            setSelected(findOption);
+          }
         }
       },
       clearValue: () => {
@@ -74,6 +81,7 @@ export function Select({
       )}
 
       <Container
+        ref={selectRef}
         options={options}
         classNamePrefix="react-select"
         placeholder={placeholder}
