@@ -21,6 +21,9 @@ export function Mask({
   label,
   disabled,
   mask,
+  onBlur,
+  onFocus,
+  onChange,
   ...rest
 }: MaskProps): JSX.Element {
   const { colorScheme } = useTheme();
@@ -32,14 +35,43 @@ export function Mask({
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(defaultValue);
 
-  function handleChange(value: string): void {
-    const masked = toPattern(value, masks[mask]);
+  function handleBlur(
+    event: React.FocusEvent<HTMLInputElement, Element>,
+  ): void {
+    setIsFocused(false);
+
+    if (onBlur) {
+      onBlur(event);
+    }
+  }
+
+  function handleFocus(
+    event: React.FocusEvent<HTMLInputElement, Element>,
+  ): void {
+    setIsFocused(true);
+
+    if (onFocus) {
+      onFocus(event);
+    }
+  }
+
+  function handleChange(
+    event?: React.ChangeEvent<HTMLInputElement> | null,
+    data?: string,
+  ): void {
+    const value = data ?? event?.target.value;
+
+    const masked = toPattern(value ?? '', masks[mask]);
 
     if (inputRef.current) {
       inputRef.current.value = masked;
     }
 
     setIsFilled(masked);
+
+    if (onChange && event) {
+      onChange(event);
+    }
   }
 
   useEffect(() => {
@@ -50,7 +82,7 @@ export function Mask({
         return ref.current.value;
       },
       setValue: (_, value: string) => {
-        handleChange(String(value));
+        handleChange(null, String(value));
       },
       clearValue: (ref) => {
         ref.current.value = '';
@@ -88,11 +120,9 @@ export function Mask({
           ref={inputRef}
           defaultValue={defaultValue}
           disabled={disabled}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => {
-            setIsFocused(false);
-          }}
-          onChange={(event) => handleChange(event.target.value)}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          onChange={(event) => handleChange(event)}
           {...rest}
         />
         {isFilled && !disabled && (

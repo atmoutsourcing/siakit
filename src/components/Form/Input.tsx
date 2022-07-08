@@ -17,6 +17,9 @@ export function Input({
   name,
   label,
   disabled,
+  onBlur,
+  onFocus,
+  onChange,
   ...rest
 }: InputProps): JSX.Element {
   const { colorScheme } = useTheme();
@@ -28,12 +31,41 @@ export function Input({
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(defaultValue);
 
-  function handleChange(value: string): void {
+  function handleBlur(
+    event: React.FocusEvent<HTMLInputElement, Element>,
+  ): void {
+    setIsFocused(false);
+
+    if (onBlur) {
+      onBlur(event);
+    }
+  }
+
+  function handleFocus(
+    event: React.FocusEvent<HTMLInputElement, Element>,
+  ): void {
+    setIsFocused(true);
+
+    if (onFocus) {
+      onFocus(event);
+    }
+  }
+
+  function handleChange(
+    event?: React.ChangeEvent<HTMLInputElement> | null,
+    data?: string,
+  ): void {
+    const value = data ?? event?.target.value;
+
     if (inputRef.current) {
-      inputRef.current.value = value;
+      inputRef.current.value = value ?? '';
     }
 
     setIsFilled(value);
+
+    if (onChange && event) {
+      onChange(event);
+    }
   }
 
   useEffect(() => {
@@ -44,7 +76,7 @@ export function Input({
         return ref.current.value;
       },
       setValue: (_, value: string) => {
-        handleChange(String(value));
+        handleChange(null, String(value));
       },
       clearValue: (ref) => {
         ref.current.value = '';
@@ -82,11 +114,9 @@ export function Input({
           ref={inputRef}
           defaultValue={defaultValue}
           disabled={disabled}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => {
-            setIsFocused(false);
-          }}
-          onChange={(event) => handleChange(event.target.value)}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          onChange={(event) => handleChange(event)}
           {...rest}
         />
         {isFilled && !disabled && (
