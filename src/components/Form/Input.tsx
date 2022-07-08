@@ -32,21 +32,21 @@ export function Input({
   const [isFilled, setIsFilled] = useState(defaultValue);
 
   function handleBlur(
-    event: React.FocusEvent<HTMLInputElement, Element>,
+    event?: React.FocusEvent<HTMLInputElement, Element>,
   ): void {
     setIsFocused(false);
 
-    if (onBlur) {
+    if (onBlur && event) {
       onBlur(event);
     }
   }
 
   function handleFocus(
-    event: React.FocusEvent<HTMLInputElement, Element>,
+    event?: React.FocusEvent<HTMLInputElement, Element>,
   ): void {
     setIsFocused(true);
 
-    if (onFocus) {
+    if (onFocus && event) {
       onFocus(event);
     }
   }
@@ -67,6 +67,12 @@ export function Input({
       onChange(event);
     }
   }
+
+  useEffect(() => {
+    if (disabled) {
+      handleBlur();
+    }
+  }, [disabled]);
 
   useEffect(() => {
     registerField({
