@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { useField } from '@unform/core';

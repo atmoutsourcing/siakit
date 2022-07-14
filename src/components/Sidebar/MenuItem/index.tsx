@@ -1,6 +1,6 @@
-import React, { useContext, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 
-import * as icons from '../../../helpers/icons';
+import { icons } from '../../../helpers/icons';
 import { useTheme } from '../../../hooks/theme';
 import { Tooltip } from '../../Tooltip';
 import { SidebarContext } from '../SidebarContext';

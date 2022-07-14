@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Colors } from '../../hooks/theme';
 import { Heading } from '../Heading';
 import { Tooltip } from '../Tooltip';

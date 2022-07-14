@@ -1,7 +1,9 @@
-import React from 'react';
-
 import { Container } from './styles';
 
-export function Spinner(): JSX.Element {
-  return <Container />;
+interface SpinnerProps {
+  inverted?: boolean;
+}
+
+export function Spinner({ inverted = false }: SpinnerProps): JSX.Element {
+  return <Container inverted={inverted} />;
 }

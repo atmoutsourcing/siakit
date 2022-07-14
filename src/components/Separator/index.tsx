@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Direction, Container } from './styles';
 
 type SeparatorProps = {

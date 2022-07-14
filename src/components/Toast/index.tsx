@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   HiOutlineInformationCircle,
   HiOutlineCheckCircle,
@@ -18,6 +17,10 @@ import { Button } from '../Button';
 import { Flex } from '../Flex';
 
 export const StyledToastContainer = styled(ToastContainer)`
+  .Toastify__toast-container {
+    z-index: 9999;
+  }
+
   .Toastify__toast {
     background-color: ${({ theme }) => theme.colors.cardBackground};
   }

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { useTheme } from '../../../hooks/theme';
 import { SidebarContext } from '../SidebarContext';

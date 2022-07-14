@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { useField } from '@unform/core';

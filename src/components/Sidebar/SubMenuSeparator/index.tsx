@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Separator } from '../../Separator';
 import { Container } from './styles';
 

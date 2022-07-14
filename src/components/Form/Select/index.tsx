@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useField } from '@unform/core';
 
@@ -57,7 +57,7 @@ export function Select({
             setSelected(value);
 
             if (onChange) {
-              onChange(value?.value || '');
+              onChange(value.value);
             }
 
             return;
@@ -68,7 +68,7 @@ export function Select({
           );
 
           if (onChange) {
-            onChange(findOption?.value || '');
+            onChange(findOption.value);
           }
 
           if (findOption) {

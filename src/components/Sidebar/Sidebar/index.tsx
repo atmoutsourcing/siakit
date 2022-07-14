@@ -1,4 +1,4 @@
-import React, { useMemo, ReactNode, useContext, useEffect } from 'react';
+import { useMemo, ReactNode, useContext, useEffect } from 'react';
 
 import { SidebarContext, SidebarProvider } from '../SidebarContext';
 import { Container } from './styles';

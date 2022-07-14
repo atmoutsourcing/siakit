@@ -20,4 +20,3 @@ export * from 'react-icons/ti';
 export * from 'react-icons/vsc';
 
 export * from 'react-icons/wi';
-

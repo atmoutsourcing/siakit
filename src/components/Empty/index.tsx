@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Lottie from 'react-lottie';
 
 import emptyDarkAnimationData from '../../assets/animations/empty_dark.json';

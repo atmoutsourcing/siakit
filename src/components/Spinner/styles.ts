@@ -6,12 +6,18 @@ const animation = keyframes`
   }
 `;
 
-export const Container = styled.div`
+interface ContainerProps {
+  inverted: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   width: 22px;
   height: 22px;
   border-radius: 50%;
   animation: ${animation} 0.9s linear infinite;
 
-  border: 2px solid ${({ theme }) => theme.colors.gray[4]};
-  border-left-color: ${({ theme }) => theme.colors.gray[11]};
+  border: 2px solid
+    ${({ theme, inverted }) => theme.colors.gray[inverted ? 11 : 4]};
+  border-left-color: ${({ theme, inverted }) =>
+    theme.colors.gray[inverted ? 4 : 11]};
 `;

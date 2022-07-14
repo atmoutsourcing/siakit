@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+type Overflow = 'auto' | 'hidden';
+
 export type ContainerProps = {
   flex?: boolean | number;
   direction?: 'row' | 'column';
@@ -12,8 +14,8 @@ export type ContainerProps = {
   align?: 'stretch' | 'flex-start' | 'flex-end' | 'center' | 'baseline';
 
   gap?: boolean | number | string;
-  padding?: boolean | number | string;
   margin?: boolean | number | string;
+  padding?: boolean | number | string;
 
   width?: number | string;
   height?: number | string;
@@ -21,7 +23,7 @@ export type ContainerProps = {
   maxWidth?: number | string;
   maxHeight?: number | string;
 
-  overflow?: boolean | 'auto' | 'hidden';
+  overflow?: boolean | Overflow;
 };
 
 export const Container = styled.div<ContainerProps>`

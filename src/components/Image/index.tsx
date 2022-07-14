@@ -1,5 +1,3 @@
-import React from 'react';
-
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 
 type ImageProps = {
