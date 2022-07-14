@@ -8,6 +8,7 @@ type ContainerProps = {
 };
 
 export const InputContainer = styled.div<ContainerProps>`
+  flex: 1;
   display: flex;
   flex-direction: column;
 
