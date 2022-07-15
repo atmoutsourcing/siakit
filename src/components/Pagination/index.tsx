@@ -1,5 +1,9 @@
+import { useEffect, useRef } from 'react';
+
+import { FormHandles } from '@unform/core';
+
 import { Flex } from '../Flex';
-import { Heading } from '../Heading';
+import { Form, Select } from '../Form';
 import { IconButton } from '../IconButton';
 import { Text } from '../Text';
 import { PaginationItem } from './PaginationItem';
@@ -32,6 +36,14 @@ export function Pagination({
   perPage,
   perPageChange,
 }: PaginationProps): JSX.Element {
+  const formRef = useRef<FormHandles>(null);
+
+  useEffect(() => {
+    if (formRef.current) {
+      formRef.current.setFieldValue('perPage', perPage);
+    }
+  }, [perPage]);
+
   const lastPage = Math.ceil(totalCount / perPage);
 
   const previousPages =
@@ -61,7 +73,25 @@ export function Pagination({
         </Text>
       </Flex>
       <Flex gap={8} align="center">
-        <Heading size="xs">TODO: per page select</Heading>
+        {!!perPageChange && (
+          <Form ref={formRef} onSubmit={() => undefined}>
+            <Select
+              name="perPage"
+              options={[
+                { value: 10, label: '10' },
+                { value: 20, label: '20' },
+                { value: 50, label: '50' },
+                { value: 100, label: '100' },
+                { value: 200, label: '200' },
+              ]}
+              onChange={(value) => {
+                perPageChange(
+                  typeof value === 'number' ? value : Number(value),
+                );
+              }}
+            />
+          </Form>
+        )}
 
         {currentPage > 1 + siblingsCount && (
           <>
