@@ -24,3 +24,4 @@ export { Slider } from './Slider';
 export { Switch } from './Switch';
 export { TextArea } from './TextArea';
 export { TimePicker } from './TimePicker';
+export { Pin } from './Pin';

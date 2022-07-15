@@ -70,6 +70,7 @@ export {
   Switch,
   TextArea,
   TimePicker,
+  Pin,
 } from '../components/Form';
 
 export { Badge } from '../components/Badge';
