@@ -74,4 +74,6 @@ export {
 } from '../components/Form';
 
 export { Badge } from '../components/Badge';
+export { PageHeader } from '../components/PageHeader';
+
 export { toast } from '../components/Toast';
