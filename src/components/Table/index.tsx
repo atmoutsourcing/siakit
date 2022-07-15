@@ -58,6 +58,8 @@ interface TableProps {
 
   sort?: SortType;
   onSort?: (sort: SortType) => void;
+
+  exports?: () => void;
 }
 
 export function Table({
@@ -74,6 +76,8 @@ export function Table({
 
   sort,
   onSort,
+
+  exports,
 }: TableProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -277,17 +281,21 @@ export function Table({
         />
       )}
 
-      {hasPagination && (
+      {(hasPagination || !!exports) && (
         <Flex>
-          {hasPagination && (
-            <Pagination
-              totalCount={totalCount}
-              currentPage={currentPage}
-              onPageChange={onPageChange}
-              perPage={perPage}
-              perPageChange={perPageChange}
-            />
-          )}
+          <>
+            {!!exports && exports()}
+
+            {hasPagination && (
+              <Pagination
+                totalCount={totalCount}
+                currentPage={currentPage}
+                onPageChange={onPageChange}
+                perPage={perPage}
+                perPageChange={perPageChange}
+              />
+            )}
+          </>
         </Flex>
       )}
     </Flex>
