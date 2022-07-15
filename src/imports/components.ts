@@ -30,6 +30,7 @@ export { Pagination } from '../components/Pagination';
 export { Timeline } from '../components/Timeline';
 export { Popover } from '../components/Popover';
 export { HoverCard } from '../components/HoverCard';
+export { Spacer } from '../components/Spacer';
 export { Accordion, AccordionItem } from '../components/Accordion';
 
 export { Footer, FooterLeft } from '../components/Footer';
@@ -75,5 +76,14 @@ export {
 
 export { Badge } from '../components/Badge';
 export { PageHeader } from '../components/PageHeader';
+export { CodeHighlight } from '../components/CodeHighlight';
+export { Image } from '../components/Image';
+export { Table } from '../components/Table';
+
+export {
+  SimpleTable,
+  SimpleTableHeader,
+  SimpleTableItem,
+} from '../components/SimpleTable';
 
 export { toast } from '../components/Toast';
