@@ -18,6 +18,7 @@ interface Props {
   options: Option[];
   returnType?: 'key' | 'option';
   onChange?: (value: string | number) => void;
+  menuPlacement?: 'top' | 'bottom';
 }
 type SelectProps = JSX.IntrinsicElements['input'] & Props;
 
@@ -29,6 +30,7 @@ export function Select({
   placeholder,
   returnType = 'key',
   onChange,
+  menuPlacement,
 }: SelectProps): JSX.Element {
   const { colorScheme } = useTheme();
 
@@ -109,6 +111,7 @@ export function Select({
         }}
         isClearable
         isDisabled={disabled}
+        menuPlacement={menuPlacement}
       />
 
       {error && <Error>{error}</Error>}

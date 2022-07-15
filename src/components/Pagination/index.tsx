@@ -16,7 +16,7 @@ type PaginationProps = {
   onPageChange: (page: number) => void;
 
   perPage: number;
-  perPageChange: (amount: number) => void;
+  perPageChange?: (amount: number) => void;
 };
 
 const siblingsCount = 1;
@@ -89,6 +89,7 @@ export function Pagination({
                   typeof value === 'number' ? value : Number(value),
                 );
               }}
+              menuPlacement="top"
             />
           </Form>
         )}
