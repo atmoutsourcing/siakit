@@ -1,14 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { Colors } from '.';
+import { Colors, Theme } from '.';
 
 type GlobalStyleProps = {
+  appTheme: Theme;
   colorScheme: Colors;
 };
 
 export const GlobaStyle = createGlobalStyle<GlobalStyleProps>`
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
   :root {
     --rdp-cell-size: 40px;
   }
@@ -44,8 +43,9 @@ export const GlobaStyle = createGlobalStyle<GlobalStyleProps>`
 
   body {
     -webkit-font-smoothing: antialiased;
-    background-color: ${(props) => props.theme.colors.gray[1]};
-    color: ${(props) => props.theme.colors.gray[12]};
+    background-color: ${({ appTheme, theme }) =>
+      theme.colors.gray[appTheme === 'light' ? 2 : 1]};
+    color: ${({ theme }) => theme.colors.gray[12]};
   }
 
   body, input, textarea, button {

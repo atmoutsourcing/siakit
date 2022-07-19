@@ -79,7 +79,7 @@ export function ThemeProvider({ children }: ThemeProviderProps): JSX.Element {
       <StyledComponentsThemeProvider theme={themes[theme as 'light' | 'dark']}>
         {children}
 
-        <GlobaStyle colorScheme={colorScheme} />
+        <GlobaStyle appTheme={theme} colorScheme={colorScheme} />
       </StyledComponentsThemeProvider>
     </ThemeContext.Provider>
   );
