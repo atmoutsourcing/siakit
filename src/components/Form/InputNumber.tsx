@@ -12,14 +12,14 @@ interface Props {
   placeholder?: string;
 }
 
-type NumberProps = JSX.IntrinsicElements['input'] & Props;
+type InputNumberProps = JSX.IntrinsicElements['input'] & Props;
 
-export function Number({
+export function InputNumber({
   name,
   label,
   disabled,
   ...rest
-}: NumberProps): JSX.Element {
+}: InputNumberProps): JSX.Element {
   const { colorScheme } = useTheme();
 
   const inputRef = useRef<HTMLInputElement>(null);

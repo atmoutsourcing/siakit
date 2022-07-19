@@ -16,7 +16,7 @@ export { Input } from './Input';
 export { Language } from './Language';
 export { Mask } from './Mask';
 export { Money } from './Money';
-export { Number } from './Number';
+export { InputNumber } from './InputNumber';
 export { Password } from './Password';
 export { Phone } from './Phone';
 export { Radio } from './Radio';
