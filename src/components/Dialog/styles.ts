@@ -19,7 +19,8 @@ export const Content = styled(Card)`
 
   padding: 24px;
 
-  img {
+  img,
+  svg {
     width: 56px;
     margin-top: 8px;
     margin-bottom: 32px;

@@ -72,6 +72,7 @@ export {
   TextArea,
   TimePicker,
   Pin,
+  PercentageInput,
 } from '../components/Form';
 
 export { Badge } from '../components/Badge';
