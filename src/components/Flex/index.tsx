@@ -1,11 +1,17 @@
-import { ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 
-import { Container, ContainerProps } from './styles';
+import { Container, FlexProps as ContainerProps } from './styles';
 
 interface FlexProps extends ContainerProps {
   children: ReactNode;
 }
 
-export function Flex({ children, ...rest }: FlexProps): JSX.Element {
-  return <Container {...rest}>{children}</Container>;
-}
+export const Flex = forwardRef<HTMLDivElement, FlexProps>(
+  ({ children, ...rest }, ref) => {
+    return (
+      <Container ref={ref} {...rest}>
+        {children}
+      </Container>
+    );
+  },
+);

@@ -15,7 +15,7 @@ import * as io from 'react-icons/io';
 import * as md from 'react-icons/md';
 import * as ri from 'react-icons/ri';
 // import * as si from 'react-icons/si';
-// import * as tb from 'react-icons/tb';
+import * as tb from 'react-icons/tb';
 // import * as ti from 'react-icons/ti';
 // import * as vsc from 'react-icons/vsc';
 // import * as wi from 'react-icons/wi';
@@ -38,7 +38,7 @@ export const icons = {
   ...md,
   ...ri,
   // ...si,
-  // ...tb,
+  ...tb,
   // ...ti,
   // ...vsc,
   // ...wi,

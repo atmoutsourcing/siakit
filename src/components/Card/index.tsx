@@ -1,17 +1,12 @@
-import { forwardRef, ReactNode } from 'react';
+import styled from 'styled-components';
 
-import { Container } from './styles';
+import { flexStyle } from '../Flex/styles';
 
-type CardProps = {
-  children: ReactNode;
-};
+export const Card = styled.div`
+  ${flexStyle};
 
-export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ children, ...rest }, ref) => {
-    return (
-      <Container ref={ref} {...rest}>
-        {children}
-      </Container>
-    );
-  },
-);
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.cardBackground};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  border: 1px solid ${({ theme }) => theme.colors.gray[3]};
+`;

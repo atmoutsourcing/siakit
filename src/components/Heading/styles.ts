@@ -54,6 +54,7 @@ type ContainerProps = {
 export const Container = styled.strong<ContainerProps>`
   color: ${(props) => props.theme.colors.gray[12]};
   line-height: 1.2;
+  font-weight: 500;
 
   ${({ size }) =>
     size === 'md' &&
