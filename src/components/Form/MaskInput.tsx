@@ -1,26 +1,31 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useField } from '@unform/core';
-import { toMoney } from 'vanilla-masker';
+import { toPattern } from 'vanilla-masker';
 
+import { masks, MaskType } from '../../helpers/masks';
 import { useTheme } from '../../hooks/theme';
 import { IconButton } from '../IconButton';
-import { Text } from '../Text';
 import { InputContainer, Label, InputBody, Error } from './styles';
 
 interface Props {
   name: string;
   label?: string;
   placeholder?: string;
+  mask: MaskType;
 }
-type MoneyProps = JSX.IntrinsicElements['input'] & Props;
+type MaskInputProps = JSX.IntrinsicElements['input'] & Props;
 
-export function Money({
+export function MaskInput({
   name,
   label,
   disabled,
+  mask,
+  onBlur,
+  onFocus,
+  onChange,
   ...rest
-}: MoneyProps): JSX.Element {
+}: MaskInputProps): JSX.Element {
   const { colorScheme } = useTheme();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -30,15 +35,50 @@ export function Money({
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(defaultValue);
 
-  function handleChange(value: string): void {
-    const masked = toMoney(value);
+  function handleBlur(
+    event?: React.FocusEvent<HTMLInputElement, Element>,
+  ): void {
+    setIsFocused(false);
+
+    if (onBlur && event) {
+      onBlur(event);
+    }
+  }
+
+  function handleFocus(
+    event?: React.FocusEvent<HTMLInputElement, Element>,
+  ): void {
+    setIsFocused(true);
+
+    if (onFocus && event) {
+      onFocus(event);
+    }
+  }
+
+  function handleChange(
+    event?: React.ChangeEvent<HTMLInputElement> | null,
+    data?: string,
+  ): void {
+    const value = data ?? event?.target.value;
+
+    const masked = toPattern(value ?? '', masks[mask]);
 
     if (inputRef.current) {
       inputRef.current.value = masked;
     }
 
     setIsFilled(masked);
+
+    if (onChange && event) {
+      onChange(event);
+    }
   }
+
+  useEffect(() => {
+    if (disabled) {
+      handleBlur();
+    }
+  }, [disabled]);
 
   useEffect(() => {
     registerField({
@@ -47,8 +87,8 @@ export function Money({
       getValue: (ref) => {
         return ref.current.value;
       },
-      setValue: (ref, value: string) => {
-        handleChange(value);
+      setValue: (_, value: string) => {
+        handleChange(null, String(value));
       },
       clearValue: (ref) => {
         ref.current.value = '';
@@ -81,19 +121,14 @@ export function Money({
         colorScheme={colorScheme}
         disabled={!!disabled}
       >
-        <Text size="sm" lowContrast>
-          R$
-        </Text>
         <input
           id={fieldName}
           ref={inputRef}
           defaultValue={defaultValue}
           disabled={disabled}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => {
-            setIsFocused(false);
-          }}
-          onChange={(event) => handleChange(event.target.value)}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          onChange={(event) => handleChange(event)}
           {...rest}
         />
         {isFilled && !disabled && (

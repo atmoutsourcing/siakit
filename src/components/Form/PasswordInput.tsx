@@ -11,14 +11,14 @@ interface Props {
   label?: string;
   placeholder?: string;
 }
-type PasswordProps = JSX.IntrinsicElements['input'] & Props;
+type PasswordInputProps = JSX.IntrinsicElements['input'] & Props;
 
-export function Password({
+export function PasswordInput({
   name,
   label,
   disabled,
   ...rest
-}: PasswordProps): JSX.Element {
+}: PasswordInputProps): JSX.Element {
   const { colorScheme } = useTheme();
 
   const inputRef = useRef<HTMLInputElement>(null);

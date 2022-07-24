@@ -11,9 +11,9 @@ interface Props {
   label?: string;
   amount?: number;
 }
-type InputProps = JSX.IntrinsicElements['input'] & Props;
+type PinInputProps = JSX.IntrinsicElements['input'] & Props;
 
-export function Pin({
+export function PinInput({
   name,
   label,
   disabled,
@@ -21,7 +21,7 @@ export function Pin({
   onChange,
   amount = 4,
   ...rest
-}: InputProps): JSX.Element {
+}: PinInputProps): JSX.Element {
   const { colorScheme } = useTheme();
 
   const inputRefs = useRef<HTMLInputElement[]>([]);

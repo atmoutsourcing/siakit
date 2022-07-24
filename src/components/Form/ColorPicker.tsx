@@ -17,20 +17,20 @@ interface Props {
   placeholder?: string;
   returnType?: 'key' | 'option';
 }
-type ColorProps = JSX.IntrinsicElements['input'] & Props;
+type ColorPickerProps = JSX.IntrinsicElements['input'] & Props;
 
 const options = Object.keys(colors).map((item) => ({
   value: item,
   label: item,
 }));
 
-export function Color({
+export function ColorPicker({
   name,
   label,
   disabled,
   placeholder,
   returnType = 'key',
-}: ColorProps): JSX.Element {
+}: ColorPickerProps): JSX.Element {
   const { colorScheme } = useTheme();
 
   const { fieldName, defaultValue = '', registerField, error } = useField(name);

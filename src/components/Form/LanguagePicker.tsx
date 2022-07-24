@@ -16,7 +16,7 @@ interface Props {
   returnType?: 'key' | 'option';
 }
 
-type LanguageProps = JSX.IntrinsicElements['input'] & Props;
+type LanguagePickerProps = JSX.IntrinsicElements['input'] & Props;
 
 type Option = {
   value: string;
@@ -30,13 +30,13 @@ const options = [
   { label: 'Español', value: 'es_ES', flag: espanhaFlag },
 ];
 
-export function Language({
+export function LanguagePicker({
   name,
   label,
   disabled,
   placeholder,
   returnType = 'key',
-}: LanguageProps): JSX.Element {
+}: LanguagePickerProps): JSX.Element {
   const { colorScheme } = useTheme();
 
   const { fieldName, defaultValue = '', registerField, error } = useField(name);

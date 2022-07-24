@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useField } from '@unform/core';
+import { toPattern } from 'vanilla-masker';
 
 import { useTheme } from '../../hooks/theme';
 import { IconButton } from '../IconButton';
@@ -11,15 +12,14 @@ interface Props {
   label?: string;
   placeholder?: string;
 }
+type PhoneInputProps = JSX.IntrinsicElements['input'] & Props;
 
-type InputNumberProps = JSX.IntrinsicElements['input'] & Props;
-
-export function InputNumber({
+export function PhoneInput({
   name,
   label,
   disabled,
   ...rest
-}: InputNumberProps): JSX.Element {
+}: PhoneInputProps): JSX.Element {
   const { colorScheme } = useTheme();
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -30,13 +30,19 @@ export function InputNumber({
   const [isFilled, setIsFilled] = useState(defaultValue);
 
   function handleChange(value: string): void {
-    const valueWithoutDigit = value.replaceAll(/\D/g, '');
+    let masked = '';
 
-    if (inputRef.current) {
-      inputRef.current.value = valueWithoutDigit;
+    if (value.length > 14) {
+      masked = toPattern(value, '(99) 99999-9999');
+    } else {
+      masked = toPattern(value, '(99) 9999-9999');
     }
 
-    setIsFilled(valueWithoutDigit);
+    if (inputRef.current) {
+      inputRef.current.value = masked;
+    }
+
+    setIsFilled(masked);
   }
 
   useEffect(() => {
@@ -47,7 +53,7 @@ export function InputNumber({
         return ref.current.value;
       },
       setValue: (ref, value: string) => {
-        handleChange(typeof value === 'string' ? value : String(value));
+        handleChange(value);
       },
       clearValue: (ref) => {
         ref.current.value = '';
