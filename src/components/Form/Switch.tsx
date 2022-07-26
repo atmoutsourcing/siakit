@@ -56,10 +56,16 @@ const SwitchLabel = styled.label`
 interface Props {
   name: string;
   label?: string;
+  onChange?: (checked: boolean) => void;
 }
 type SwitchProps = JSX.IntrinsicElements['input'] & Props;
 
-export function Switch({ name, label, disabled }: SwitchProps): JSX.Element {
+export function Switch({
+  name,
+  label,
+  disabled,
+  onChange,
+}: SwitchProps): JSX.Element {
   const { colorScheme } = useTheme();
 
   const {
@@ -86,13 +92,21 @@ export function Switch({ name, label, disabled }: SwitchProps): JSX.Element {
     });
   }, [fieldName, registerField, checked]);
 
+  function handleChange(data: boolean): void {
+    setChecked(data);
+
+    if (onChange) {
+      onChange(data);
+    }
+  }
+
   return (
     <InputContainer disabled={!!disabled}>
       <SwitchBody>
         <SwitchContainer
           colorScheme={colorScheme}
           checked={checked}
-          onCheckedChange={setChecked}
+          onCheckedChange={handleChange}
           id={name}
           disabled={disabled}
         >
