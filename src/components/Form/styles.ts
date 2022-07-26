@@ -22,6 +22,22 @@ export const InputContainer = styled.div<ContainerProps>`
     `}
 `;
 
+export const RichTextInputContainer = styled.div<ContainerProps>`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+
+  gap: 4px;
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: not-allowed;
+      opacity: 0.5;
+    `}
+`;
+
 export const TextAreaContainer = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;

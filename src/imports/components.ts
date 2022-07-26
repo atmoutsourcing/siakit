@@ -73,6 +73,7 @@ export {
   TimePicker,
   PinInput,
   PercentageInput,
+  RichTextInput,
 } from '../components/Form';
 
 export { Badge } from '../components/Badge';
