@@ -13,6 +13,7 @@ type IconButtonProps = {
   disabled?: boolean;
   icon: keyof typeof icons;
   tabIndex?: number;
+  visible?: boolean;
 };
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
@@ -26,6 +27,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       disabled,
       icon,
       tabIndex,
+      visible = true,
       ...rest
     },
     ref,
@@ -56,6 +58,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         onClick={onClick}
         disabled={disabled}
         tabIndex={tabIndex}
+        visible={visible}
         {...rest}
       >
         {Icon && <Icon size={iconSize()} />}

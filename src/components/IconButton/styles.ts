@@ -10,6 +10,7 @@ type ContainerProps = {
   colorScheme: Colors;
   size: Size;
   variant: Variant;
+  visible: boolean;
 };
 
 export const Container = styled.button<ContainerProps>`
@@ -28,6 +29,8 @@ export const Container = styled.button<ContainerProps>`
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+  visibility: ${({ visible }) => (visible ? 'visible' : 'hidden')};
 
   ${({ size }) =>
     size === 'sm' &&
