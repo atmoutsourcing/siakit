@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 type Overflow = 'auto' | 'hidden';
 
 export type ContainerProps = {
+  flex?: boolean | number;
+
   columns: number | string;
 
   gap?: boolean | number | string;
@@ -19,6 +21,11 @@ export type ContainerProps = {
 };
 
 export const Container = styled.div<ContainerProps>`
+  ${({ flex }) =>
+    css`
+      flex: ${typeof flex === 'boolean' ? 1 : flex};
+    `}
+
   ${({ overflow }) =>
     overflow &&
     css`
