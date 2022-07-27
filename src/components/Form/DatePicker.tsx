@@ -90,6 +90,7 @@ export function DatePicker({
   const [isFilled, setIsFilled] = useState(defaultValue);
 
   const [selected, setSelected] = useState<Date>();
+  const [monthSelected, setMonthSelect] = useState<Date>();
 
   function handleChange(value: string): void {
     const masked = toPattern(value, '99/99/9999');
@@ -106,6 +107,7 @@ export function DatePicker({
 
     if (isValid(newDate)) {
       setSelected(newDate);
+      setMonthSelect(newDate);
     }
   }
 
@@ -122,9 +124,8 @@ export function DatePicker({
   useEffect(() => {
     registerField<Date | undefined>({
       name: fieldName,
-      // ref: inputRef,
       getValue: () => selected,
-      setValue: (ref, value: Date | undefined) => {
+      setValue: (_, value: Date | undefined) => {
         handleSelect(value);
       },
       clearValue: (ref) => {
@@ -132,6 +133,7 @@ export function DatePicker({
 
         setIsFilled('');
         setSelected(undefined);
+        setMonthSelect(undefined);
       },
     });
   }, [fieldName, registerField, selected]);
@@ -171,17 +173,18 @@ export function DatePicker({
           onChange={(event) => handleChange(event.target.value)}
           {...rest}
         />
-        {isFilled && !disabled && (
-          <IconButton
-            type="button"
-            icon="HiOutlineX"
-            size="sm"
-            variant="ghost"
-            colorScheme="gray"
-            onClick={handleClear}
-            tabIndex={-1}
-          />
-        )}
+
+        <IconButton
+          type="button"
+          icon="HiOutlineX"
+          size="sm"
+          variant="ghost"
+          colorScheme="gray"
+          onClick={handleClear}
+          tabIndex={-1}
+          visible={isFilled && !disabled}
+        />
+
         <Popover.Root>
           <TriggerButton tabIndex={-1} disabled={disabled}>
             <HiCalendar size="16" />
@@ -193,7 +196,8 @@ export function DatePicker({
                 mode="single"
                 selected={selected}
                 onSelect={handleSelect}
-                month={selected}
+                month={monthSelected}
+                onMonthChange={setMonthSelect}
               />
             </Card>
           </Popover.Content>

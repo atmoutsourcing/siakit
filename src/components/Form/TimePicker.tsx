@@ -165,17 +165,18 @@ export function TimePicker({
           onChange={(event) => handleChange(event.target.value)}
           {...rest}
         />
-        {isFilled && !disabled && (
-          <IconButton
-            type="button"
-            icon="HiOutlineX"
-            size="sm"
-            variant="ghost"
-            colorScheme="gray"
-            onClick={handleClear}
-            tabIndex={-1}
-          />
-        )}
+
+        <IconButton
+          type="button"
+          icon="HiOutlineX"
+          size="sm"
+          variant="ghost"
+          colorScheme="gray"
+          onClick={handleClear}
+          tabIndex={-1}
+          visible={isFilled && !disabled}
+        />
+
         <Popover.Root>
           <TriggerButton tabIndex={-1} disabled={disabled}>
             <HiClock size="16" />

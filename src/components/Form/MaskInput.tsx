@@ -131,17 +131,17 @@ export function MaskInput({
           onChange={(event) => handleChange(event)}
           {...rest}
         />
-        {isFilled && !disabled && (
-          <IconButton
-            type="button"
-            icon="HiOutlineX"
-            size="sm"
-            variant="ghost"
-            colorScheme="gray"
-            onClick={handleClear}
-            tabIndex={-1}
-          />
-        )}
+
+        <IconButton
+          type="button"
+          icon="HiOutlineX"
+          size="sm"
+          variant="ghost"
+          colorScheme="gray"
+          onClick={handleClear}
+          tabIndex={-1}
+          visible={isFilled && !disabled}
+        />
       </InputBody>
 
       {error && <Error>{error}</Error>}

@@ -12,6 +12,7 @@ import { useTheme } from '../../../hooks/theme';
 import { Button } from '../../Button';
 import { Flex } from '../../Flex';
 import { IconButton } from '../../IconButton';
+import { Separator } from '../../Separator';
 import { Tooltip } from '../../Tooltip';
 import { Container } from './styles';
 
@@ -27,19 +28,16 @@ function MenuBar({ editor }: MenuBarProps): JSX.Element {
       const previousUrl = editor.getAttributes('link').href;
       const url = window.prompt('URL', previousUrl);
 
-      // cancelled
       if (url === null) {
         return;
       }
 
-      // empty
       if (url === '') {
         editor.chain().focus().extendMarkRange('link').unsetLink().run();
 
         return;
       }
 
-      // update link
       editor
         .chain()
         .focus()
@@ -80,34 +78,7 @@ function MenuBar({ editor }: MenuBarProps): JSX.Element {
         style={{ display: 'none' }}
       />
 
-      <Flex gap={8} padding>
-        <Tooltip content="Bold">
-          <IconButton
-            type="button"
-            icon="TbBold"
-            onClick={() => editor.chain().focus().toggleBold().run()}
-            variant={editor.isActive('bold') ? 'secondary' : 'ghost'}
-          />
-        </Tooltip>
-
-        <Tooltip content="Italic">
-          <IconButton
-            type="button"
-            icon="TbItalic"
-            onClick={() => editor.chain().focus().toggleItalic().run()}
-            variant={editor.isActive('italic') ? 'secondary' : 'ghost'}
-          />
-        </Tooltip>
-
-        <Tooltip content="Strike">
-          <IconButton
-            type="button"
-            onClick={() => editor.chain().focus().toggleStrike().run()}
-            icon="TbStrikethrough"
-            variant={editor.isActive('strike') ? 'secondary' : 'ghost'}
-          />
-        </Tooltip>
-
+      <Flex>
         <Tooltip content="Heading 1">
           <IconButton
             type="button"
@@ -147,32 +118,36 @@ function MenuBar({ editor }: MenuBarProps): JSX.Element {
           />
         </Tooltip>
 
-        <Tooltip content="List">
+        <Separator direction="vertical" />
+
+        <Tooltip content="Bold">
           <IconButton
             type="button"
-            onClick={() => editor.chain().focus().toggleBulletList().run()}
-            icon="TbList"
-            variant={editor.isActive('bulletList') ? 'secondary' : 'ghost'}
+            icon="TbBold"
+            onClick={() => editor.chain().focus().toggleBold().run()}
+            variant={editor.isActive('bold') ? 'secondary' : 'ghost'}
           />
         </Tooltip>
 
-        <Tooltip content="Ordered list">
+        <Tooltip content="Italic">
           <IconButton
             type="button"
-            onClick={() => editor.chain().focus().toggleOrderedList().run()}
-            icon="TbListNumbers"
-            variant={editor.isActive('orderedList') ? 'secondary' : 'ghost'}
+            icon="TbItalic"
+            onClick={() => editor.chain().focus().toggleItalic().run()}
+            variant={editor.isActive('italic') ? 'secondary' : 'ghost'}
           />
         </Tooltip>
 
-        <Tooltip content="To-Do list">
+        <Tooltip content="Strike">
           <IconButton
             type="button"
-            onClick={() => editor.chain().focus().toggleTaskList().run()}
-            icon="TbListDetails"
-            variant={editor.isActive('taskList') ? 'secondary' : 'ghost'}
+            onClick={() => editor.chain().focus().toggleStrike().run()}
+            icon="TbStrikethrough"
+            variant={editor.isActive('strike') ? 'secondary' : 'ghost'}
           />
         </Tooltip>
+
+        <Separator direction="vertical" />
 
         <Tooltip content="Code">
           <IconButton
@@ -212,14 +187,43 @@ function MenuBar({ editor }: MenuBarProps): JSX.Element {
           </Tooltip>
         )}
 
-        <Tooltip content="Image">
-          <Button
+        <Separator direction="vertical" />
+
+        <Tooltip content="List">
+          <IconButton
             type="button"
-            icon="TbPhoto"
-            onClick={() => inputFileRef.current?.click()}
-          >
-            Add image
-          </Button>
+            onClick={() => editor.chain().focus().toggleBulletList().run()}
+            icon="TbList"
+            variant={editor.isActive('bulletList') ? 'secondary' : 'ghost'}
+          />
+        </Tooltip>
+
+        <Tooltip content="Ordered list">
+          <IconButton
+            type="button"
+            onClick={() => editor.chain().focus().toggleOrderedList().run()}
+            icon="TbListNumbers"
+            variant={editor.isActive('orderedList') ? 'secondary' : 'ghost'}
+          />
+        </Tooltip>
+
+        <Tooltip content="To-Do list">
+          <IconButton
+            type="button"
+            onClick={() => editor.chain().focus().toggleTaskList().run()}
+            icon="TbListDetails"
+            variant={editor.isActive('taskList') ? 'secondary' : 'ghost'}
+          />
+        </Tooltip>
+
+        <Tooltip content="Image">
+          <Flex padding="0 16px">
+            <IconButton
+              type="button"
+              icon="TbPhoto"
+              onClick={() => inputFileRef.current?.click()}
+            />
+          </Flex>
         </Tooltip>
       </Flex>
     </>
@@ -252,6 +256,10 @@ export function Editor(): JSX.Element {
     content: '',
   });
 
+  function handleSubmit(): void {
+    console.log(editor?.getHTML());
+  }
+
   return (
     <Container colorScheme={colorScheme}>
       <MenuBar editor={editor} />
@@ -265,6 +273,19 @@ export function Editor(): JSX.Element {
           overflow: 'auto',
         }}
       />
+
+      <Flex>
+        <Button
+          type="button"
+          onClick={() => editor?.commands.setContent('<h1>teste</h1>')}
+          variant="secondary"
+        >
+          Enviar
+        </Button>
+        <Button type="button" onClick={handleSubmit}>
+          Enviar
+        </Button>
+      </Flex>
     </Container>
   );
 }
