@@ -174,7 +174,7 @@ export function TimePicker({
           colorScheme="gray"
           onClick={handleClear}
           tabIndex={-1}
-          visible={isFilled && !disabled}
+          visible={!!isFilled && !disabled}
         />
 
         <Popover.Root>

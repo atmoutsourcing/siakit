@@ -10,6 +10,7 @@ import { Flex } from '../Flex';
 import { IconButton } from '../IconButton';
 import { LinkButton } from '../LinkButton';
 import { Pagination } from '../Pagination';
+import { Ellipse, Rectangle } from '../Shimmer';
 import { HeaderCell } from './HeaderCell';
 import { Container, BodyCell, ActionCell, FooterCell } from './styles';
 
@@ -60,6 +61,8 @@ interface TableProps {
   onSort?: (sort: SortType) => void;
 
   exports?: () => void;
+
+  isLoading?: boolean;
 }
 
 export function Table({
@@ -78,6 +81,8 @@ export function Table({
   onSort,
 
   exports,
+
+  isLoading,
 }: TableProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -125,137 +130,139 @@ export function Table({
 
           {!!actions.length && <HeaderCell isAction>Ações</HeaderCell>}
 
-          {data.map((item) => (
-            <>
-              {headers.map((field) => {
-                if (dot.pick(field.dataIndex, item) === null) {
+          {!isLoading &&
+            data.length &&
+            data.map((item) => (
+              <>
+                {headers.map((field) => {
+                  if (dot.pick(field.dataIndex, item) === null) {
+                    return <BodyCell />;
+                  }
+
+                  if (dot.pick(field.dataIndex, item) && field.render) {
+                    return (
+                      <BodyCell align={field.align}>
+                        {field.render({
+                          value: dot.pick(field.dataIndex, item),
+                          item,
+                        })}
+                      </BodyCell>
+                    );
+                  }
+
+                  if (typeof dot.pick(field.dataIndex, item) === 'object') {
+                    const { type, value } = dot.pick(field.dataIndex, item) as {
+                      [key: string]: string;
+                    };
+
+                    if (type === 'BADGE') {
+                      const { color } = dot.pick(field.dataIndex, item) as {
+                        [key: string]: string;
+                      };
+
+                      return (
+                        <BodyCell align={field.align}>
+                          <Badge color={color.toLowerCase() as Colors}>
+                            {value}
+                          </Badge>
+                        </BodyCell>
+                      );
+                    }
+
+                    if (type === 'URL') {
+                      const { label } = dot.pick(field.dataIndex, item) as {
+                        [key: string]: string;
+                      };
+
+                      return (
+                        <BodyCell align={field.align}>
+                          <LinkButton onClick={() => window.open(value)}>
+                            {label}
+                          </LinkButton>
+                        </BodyCell>
+                      );
+                    }
+
+                    if (type === 'ICCID') {
+                      return (
+                        <BodyCell align={field.align}>
+                          <p>
+                            {value.slice(0, 10)}
+                            <span
+                              style={{
+                                fontWeight: 'bold',
+                                color: 'var(--color-green)',
+                              }}
+                            >
+                              {value.slice(10)}
+                            </span>
+                          </p>
+                        </BodyCell>
+                      );
+                    }
+
+                    if (type === 'IMEI') {
+                      return (
+                        <BodyCell align={field.align}>
+                          <p>
+                            {value.slice(0, 9)}
+                            <span
+                              style={{
+                                fontWeight: 'bold',
+                                color: 'var(--color-red)',
+                              }}
+                            >
+                              {value.slice(9)}
+                            </span>
+                          </p>
+                        </BodyCell>
+                      );
+                    }
+
+                    return (
+                      <BodyCell align={field.align}>
+                        {JSON.stringify(dot.pick(field.dataIndex, item))}
+                      </BodyCell>
+                    );
+                  }
+
+                  if (field.dataIndex) {
+                    return (
+                      <BodyCell align={field.align}>
+                        {dot.pick(field.dataIndex, item)}
+                      </BodyCell>
+                    );
+                  }
+
                   return <BodyCell />;
-                }
+                })}
 
-                if (dot.pick(field.dataIndex, item) && field.render) {
-                  return (
-                    <BodyCell align={field.align}>
-                      {field.render({
-                        value: dot.pick(field.dataIndex, item),
-                        item,
-                      })}
-                    </BodyCell>
-                  );
-                }
+                {!!actions.length && (
+                  <ActionCell>
+                    <Dropdown>
+                      <IconButton
+                        type="button"
+                        variant="ghost"
+                        colorScheme="gray"
+                        icon="MdMoreHoriz"
+                      />
 
-                if (typeof dot.pick(field.dataIndex, item) === 'object') {
-                  const { type, value } = dot.pick(field.dataIndex, item) as {
-                    [key: string]: string;
-                  };
-
-                  if (type === 'BADGE') {
-                    const { color } = dot.pick(field.dataIndex, item) as {
-                      [key: string]: string;
-                    };
-
-                    return (
-                      <BodyCell align={field.align}>
-                        <Badge color={color.toLowerCase() as Colors}>
-                          {value}
-                        </Badge>
-                      </BodyCell>
-                    );
-                  }
-
-                  if (type === 'URL') {
-                    const { label } = dot.pick(field.dataIndex, item) as {
-                      [key: string]: string;
-                    };
-
-                    return (
-                      <BodyCell align={field.align}>
-                        <LinkButton onClick={() => window.open(value)}>
-                          {label}
-                        </LinkButton>
-                      </BodyCell>
-                    );
-                  }
-
-                  if (type === 'ICCID') {
-                    return (
-                      <BodyCell align={field.align}>
-                        <p>
-                          {value.slice(0, 10)}
-                          <span
-                            style={{
-                              fontWeight: 'bold',
-                              color: 'var(--color-green)',
-                            }}
+                      <DropdownContent>
+                        {actions.map((action) => (
+                          <DropdownItem
+                            key={action.label}
+                            onClick={() => action.onClick(item)}
+                            type={action.type as any}
                           >
-                            {value.slice(10)}
-                          </span>
-                        </p>
-                      </BodyCell>
-                    );
-                  }
-
-                  if (type === 'IMEI') {
-                    return (
-                      <BodyCell align={field.align}>
-                        <p>
-                          {value.slice(0, 9)}
-                          <span
-                            style={{
-                              fontWeight: 'bold',
-                              color: 'var(--color-red)',
-                            }}
-                          >
-                            {value.slice(9)}
-                          </span>
-                        </p>
-                      </BodyCell>
-                    );
-                  }
-
-                  return (
-                    <BodyCell align={field.align}>
-                      {JSON.stringify(dot.pick(field.dataIndex, item))}
-                    </BodyCell>
-                  );
-                }
-
-                if (field.dataIndex) {
-                  return (
-                    <BodyCell align={field.align}>
-                      {dot.pick(field.dataIndex, item)}
-                    </BodyCell>
-                  );
-                }
-
-                return <BodyCell />;
-              })}
-
-              {!!actions.length && (
-                <ActionCell>
-                  <Dropdown>
-                    <IconButton
-                      type="button"
-                      variant="ghost"
-                      colorScheme="gray"
-                      icon="MdMoreHoriz"
-                    />
-
-                    <DropdownContent>
-                      {actions.map((action) => (
-                        <DropdownItem
-                          key={action.label}
-                          onClick={() => action.onClick(item)}
-                          type={action.type as any}
-                        >
-                          {action.label}
-                        </DropdownItem>
-                      ))}
-                    </DropdownContent>
-                  </Dropdown>
-                </ActionCell>
-              )}
-            </>
-          ))}
+                            {action.label}
+                          </DropdownItem>
+                        ))}
+                      </DropdownContent>
+                    </Dropdown>
+                  </ActionCell>
+                )}
+              </>
+            ))}
 
           {footer &&
             headers.map(
@@ -274,7 +281,19 @@ export function Table({
         </div>
       </Container>
 
-      {!data.length && (
+      {isLoading && (
+        <Flex flex direction="column" gap={8}>
+          {new Array(5).fill('').map(() => (
+            <Flex gap={8}>
+              <Ellipse width={40} />
+              <Rectangle height={40} width="30%" />
+              <Rectangle height={40} />
+            </Flex>
+          ))}
+        </Flex>
+      )}
+
+      {!data.length && !isLoading && (
         <Empty
           title="Nenhum dado encontrado"
           description="Adicione um filtro e tente novamente."
@@ -282,7 +301,7 @@ export function Table({
       )}
 
       {(hasPagination || !!exports) && (
-        <Flex>
+        <Flex gap>
           <>
             {!!exports && exports()}
 

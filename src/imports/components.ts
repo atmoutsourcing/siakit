@@ -88,4 +88,6 @@ export {
   SimpleTableItem,
 } from '../components/SimpleTable';
 
+export { PageBuilder } from '../components/PageBuilder';
+
 export { toast } from '../components/Toast';

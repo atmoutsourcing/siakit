@@ -82,7 +82,9 @@ export function Input({
         return ref.current.value;
       },
       setValue: (_, value: string) => {
-        handleChange(null, String(value));
+        if (value !== undefined) {
+          handleChange(null, String(value));
+        }
       },
       clearValue: (ref) => {
         ref.current.value = '';
@@ -134,7 +136,7 @@ export function Input({
           colorScheme="gray"
           onClick={handleClear}
           tabIndex={-1}
-          visible={isFilled && !disabled}
+          visible={!!isFilled && !disabled}
         />
       </InputBody>
 

@@ -31,13 +31,15 @@ export function MoneyInput({
   const [isFilled, setIsFilled] = useState(defaultValue);
 
   function handleChange(value: string): void {
-    const masked = toMoney(value);
+    if (value !== undefined) {
+      const masked = toMoney(value);
 
-    if (inputRef.current) {
-      inputRef.current.value = masked;
+      if (inputRef.current) {
+        inputRef.current.value = masked;
+      }
+
+      setIsFilled(masked);
     }
-
-    setIsFilled(masked);
   }
 
   useEffect(() => {
@@ -105,7 +107,7 @@ export function MoneyInput({
           colorScheme="gray"
           onClick={handleClear}
           tabIndex={-1}
-          visible={isFilled && !disabled}
+          visible={!!isFilled && !disabled}
         />
       </InputBody>
 

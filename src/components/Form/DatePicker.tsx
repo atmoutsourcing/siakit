@@ -121,6 +121,14 @@ export function DatePicker({
     }
   }
 
+  function handleClear(): void {
+    setIsFilled('');
+
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
+  }
+
   useEffect(() => {
     registerField<Date | undefined>({
       name: fieldName,
@@ -129,22 +137,10 @@ export function DatePicker({
         handleSelect(value);
       },
       clearValue: (ref) => {
-        ref.current.value = '';
-
-        setIsFilled('');
-        setSelected(undefined);
-        setMonthSelect(undefined);
+        handleClear();
       },
     });
   }, [fieldName, registerField, selected]);
-
-  function handleClear(): void {
-    setIsFilled('');
-
-    if (inputRef.current) {
-      inputRef.current.value = '';
-    }
-  }
 
   return (
     <InputContainer disabled={!!disabled}>
@@ -182,7 +178,7 @@ export function DatePicker({
           colorScheme="gray"
           onClick={handleClear}
           tabIndex={-1}
-          visible={isFilled && !disabled}
+          visible={!!isFilled && !disabled}
         />
 
         <Popover.Root>

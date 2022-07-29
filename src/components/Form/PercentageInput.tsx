@@ -29,25 +29,27 @@ export function PercentageInput({
   const [isFilled, setIsFilled] = useState(defaultValue);
 
   function handleChange(value: string): void {
-    const valueWithoutDigit = value.replaceAll(/[^\d,]/g, '');
+    if (value !== undefined) {
+      const valueWithoutDigit = value.replaceAll(/[^\d,]/g, '');
 
-    let newValue = '0';
+      let newValue = '0';
 
-    const parsedValue = parseFloat(valueWithoutDigit.replace(',', '.'));
+      const parsedValue = parseFloat(valueWithoutDigit.replace(',', '.'));
 
-    if (parsedValue > 100) {
-      newValue = '100';
-    } else if (parsedValue < 0) {
-      newValue = '0';
-    } else {
-      newValue = valueWithoutDigit;
+      if (parsedValue > 100) {
+        newValue = '100';
+      } else if (parsedValue < 0) {
+        newValue = '0';
+      } else {
+        newValue = valueWithoutDigit;
+      }
+
+      if (inputRef.current) {
+        inputRef.current.value = String(newValue);
+      }
+
+      setIsFilled(String(newValue));
     }
-
-    if (inputRef.current) {
-      inputRef.current.value = String(newValue);
-    }
-
-    setIsFilled(String(newValue));
   }
 
   useEffect(() => {
@@ -112,7 +114,7 @@ export function PercentageInput({
           colorScheme="gray"
           onClick={handleClear}
           tabIndex={-1}
-          visible={isFilled && !disabled}
+          visible={!!isFilled && !disabled}
         />
       </InputBody>
 

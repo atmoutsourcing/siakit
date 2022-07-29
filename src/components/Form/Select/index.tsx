@@ -17,7 +17,7 @@ interface Props {
   placeholder?: string;
   options: Option[];
   returnType?: 'key' | 'option';
-  onChange?: (value: string | number) => void;
+  onChange?: (value: string | number | null) => void;
   menuPlacement?: 'top' | 'bottom';
 }
 type SelectProps = JSX.IntrinsicElements['input'] & Props;
@@ -69,7 +69,7 @@ export function Select({
             (option: Option) => option.value === value,
           );
 
-          if (onChange) {
+          if (onChange && findOption) {
             onChange(findOption.value);
           }
 
@@ -104,9 +104,7 @@ export function Select({
           setSelected(option as Option);
 
           if (onChange) {
-            const { value } = option as Option;
-
-            onChange(value as string | number);
+            onChange((option as Option)?.value);
           }
         }}
         isClearable

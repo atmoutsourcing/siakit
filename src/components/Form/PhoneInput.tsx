@@ -30,19 +30,21 @@ export function PhoneInput({
   const [isFilled, setIsFilled] = useState(defaultValue);
 
   function handleChange(value: string): void {
-    let masked = '';
+    if (value !== undefined) {
+      let masked = '';
 
-    if (value.length > 14) {
-      masked = toPattern(value, '(99) 99999-9999');
-    } else {
-      masked = toPattern(value, '(99) 9999-9999');
+      if (value?.length > 14) {
+        masked = toPattern(value, '(99) 99999-9999');
+      } else {
+        masked = toPattern(value, '(99) 9999-9999');
+      }
+
+      if (inputRef.current) {
+        inputRef.current.value = masked;
+      }
+
+      setIsFilled(masked);
     }
-
-    if (inputRef.current) {
-      inputRef.current.value = masked;
-    }
-
-    setIsFilled(masked);
   }
 
   useEffect(() => {
@@ -107,7 +109,7 @@ export function PhoneInput({
           colorScheme="gray"
           onClick={handleClear}
           tabIndex={-1}
-          visible={isFilled && !disabled}
+          visible={!!isFilled && !disabled}
         />
       </InputBody>
 
