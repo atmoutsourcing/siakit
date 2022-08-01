@@ -57,6 +57,7 @@ interface Props {
   name: string;
   label?: string;
   onChange?: (checked: boolean) => void;
+  direction?: 'vertical' | 'horizontal';
 }
 type SwitchProps = JSX.IntrinsicElements['input'] & Props;
 
@@ -65,6 +66,7 @@ export function Switch({
   label,
   disabled,
   onChange,
+  direction = 'horizontal',
 }: SwitchProps): JSX.Element {
   const { colorScheme } = useTheme();
 
@@ -102,7 +104,7 @@ export function Switch({
 
   return (
     <InputContainer disabled={!!disabled}>
-      <SwitchBody>
+      <SwitchBody isVertical={direction === 'vertical'}>
         <SwitchContainer
           colorScheme={colorScheme}
           checked={checked}

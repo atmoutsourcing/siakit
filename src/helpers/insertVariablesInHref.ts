@@ -1,7 +1,7 @@
 export function insertVariablesInHref(
   text: string,
   item:
-    | { [key: string]: string }
+    | { [key: string]: string | number }
     | { [key: string]: { [key: string]: string } },
 ): string {
   const itemSplitted = text.split('/');
@@ -18,7 +18,12 @@ export function insertVariablesInHref(
         path =
           typeof obj !== 'object' ? `${path}/${obj}` : `${path}/${obj.value}`;
       } else {
-        path = typeof obj !== 'object' ? obj : obj.value;
+        path =
+          typeof obj === 'object'
+            ? obj.value
+            : typeof obj === 'string'
+            ? obj
+            : String(obj);
       }
     }
 

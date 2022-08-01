@@ -302,12 +302,23 @@ export const CheckboxBody = styled.div<CheckboxBodyProps>`
   gap: 8px;
 `;
 
-export const SwitchBody = styled.div`
+interface SwitchBodyProps {
+  isVertical: boolean;
+}
+
+export const SwitchBody = styled.div<SwitchBodyProps>`
   display: flex;
 
   align-items: center;
 
   gap: 8px;
+
+  ${({ isVertical }) =>
+    isVertical &&
+    css`
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    `}
 `;
 
 export const LanguageItem = styled.div`
