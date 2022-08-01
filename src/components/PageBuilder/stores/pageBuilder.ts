@@ -36,6 +36,33 @@ export type ExportType = {
 
 type SortType = { dataIndex: string; direction: string };
 
+type FormActionType = {
+  label: string;
+  type: 'submit' | 'button';
+  route?: {
+    method: string;
+    url: string;
+  };
+};
+
+export type VerificationType = {
+  method: string;
+  url: string;
+};
+
+export type FormFieldType = {
+  label: string;
+  name: string;
+  type: string;
+  mask?: string;
+  options?: OptionType[];
+  href?: string;
+  parent?: string;
+  verification?: VerificationType;
+  readOnly: string;
+  required: boolean;
+};
+
 export type ConfigType = {
   id: string;
   label: string;
@@ -55,11 +82,15 @@ export type ConfigType = {
     footer: { [key: string]: string };
   };
   exports: ExportType[];
+  form: {
+    actions: FormActionType[];
+    fields: FormFieldType[];
+  };
 };
 
 type FiltersType = { [key: string]: string | number };
 
-interface ChangeParentData {
+export interface ChangeParentData {
   parent: string;
   value: string | number;
 }

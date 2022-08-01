@@ -9,6 +9,7 @@ import { Button } from '../Button';
 import { Dropdown, DropdownContent, DropdownItem } from '../Dropdown';
 import { Flex } from '../Flex';
 import { Form, FormHandles, Input } from '../Form';
+import { Spinner } from '../Spinner';
 import { Table } from '../Table';
 import { Text } from '../Text';
 import { Filters } from './Filters';
@@ -28,7 +29,7 @@ interface HandleSearchData {
   search: string;
 }
 
-export function PageBuilder({
+export function PageBuilderPage({
   config,
   agent,
   onNavigate,
@@ -102,9 +103,6 @@ export function PageBuilder({
 
       return response.data;
     },
-    {
-      staleTime: 1000 * 60, // 1 minute
-    },
   );
 
   useEffect(() => {
@@ -167,7 +165,8 @@ export function PageBuilder({
                 {action.label}
               </Button>
             ))}
-            {!isLoading && isFetching && <Text>fetching</Text>}
+
+            {!isLoading && isFetching && <Spinner />}
           </Flex>
 
           {!!config.filter && (

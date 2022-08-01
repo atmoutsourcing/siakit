@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosInstance } from 'axios';
 
+import { insertVariablesInHref } from '../../helpers/insertVariablesInHref';
 import { MaskType } from '../../helpers/masks';
 import { Button } from '../Button';
 import { Card } from '../Card';
@@ -41,7 +42,10 @@ function RenderSelect({
   agent,
   disabled,
 }: RenderSelectProps): JSX.Element {
-  const changeParent = usePageBuilderStore((state) => state.changeParent);
+  const { changeParent, filterParents } = usePageBuilderStore((state) => ({
+    changeParent: state.changeParent,
+    filterParents: state.filterParents,
+  }));
 
   if (!field.options?.length && !field.href) {
     return <Text>Imcomplete data for select</Text>;
@@ -50,13 +54,17 @@ function RenderSelect({
   const { data } = useQuery(
     [field.href],
     async () => {
-      const response = await agent.get(field.href ?? '');
+      const response = await agent.get(
+        field.parent
+          ? insertVariablesInHref(field.href ?? '', filterParents)
+          : field.href ?? '',
+      );
 
       return response.data;
     },
     {
       placeholderData: [],
-      enabled: !field.options?.length && !!field.href,
+      enabled: !field.options?.length && !!field.href && !disabled,
       staleTime: 1000 * 60 * 5, // 5 minutes
     },
   );
@@ -95,14 +103,12 @@ export function Filters({ agent }: FiltersProps): JSX.Element {
     filters,
     setFilters,
     filterParents,
-    changeParent,
   } = usePageBuilderStore((state) => ({
     config: state.config,
     toggleFiltersVisibility: state.toggleFiltersVisibility,
     filters: state.filters,
     setFilters: state.setFilters,
     filterParents: state.filterParents,
-    changeParent: state.changeParent,
   }));
 
   function handleSubmit(data: HandleSubmitData): void {

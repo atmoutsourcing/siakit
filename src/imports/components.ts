@@ -88,6 +88,7 @@ export {
   SimpleTableItem,
 } from '../components/SimpleTable';
 
-export { PageBuilder } from '../components/PageBuilder';
+export { PageBuilderPage } from '../components/PageBuilder';
+export { PageBuilderForm } from '../components/PageBuilder/PageBuilderForm';
 
 export { toast } from '../components/Toast';
