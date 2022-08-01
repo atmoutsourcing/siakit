@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { Flex } from '../../Flex';
+import { FlexProps, flexStyle } from '../../Flex/styles';
 
 interface ContainerProps {
   isErrored: boolean;
@@ -33,11 +33,13 @@ export const Container = styled.div<ContainerProps>`
   }
 `;
 
-interface PreviewItemProps {
+interface PreviewItemProps extends FlexProps {
   imgSouce: string;
 }
 
-export const PreviewItem = styled(Flex)<PreviewItemProps>`
+export const PreviewItem = styled.div<PreviewItemProps>`
+  ${flexStyle};
+
   > div {
     div.image {
       width: 48px;
