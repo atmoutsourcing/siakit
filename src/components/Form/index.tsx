@@ -30,3 +30,4 @@ export { TimePicker } from './TimePicker';
 export { PercentageInput } from './PercentageInput';
 export { PinInput } from './PinInput';
 export { RichTextInput } from './RichTextInput';
+export { FileInput } from './FileInput';

@@ -74,6 +74,7 @@ export {
   PinInput,
   PercentageInput,
   RichTextInput,
+  FileInput,
 } from '../components/Form';
 
 export { Badge } from '../components/Badge';
