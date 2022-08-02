@@ -47,24 +47,24 @@ function RenderSelect({
     filterParents: state.filterParents,
   }));
 
-  if (!field.options?.length && !field.href) {
+  if (!field.options?.length && !field.url) {
     return <Text>Imcomplete data for select</Text>;
   }
 
   const { data } = useQuery(
-    [field.href],
+    [field.url],
     async () => {
       const response = await agent.get(
         field.parent
-          ? insertVariablesInHref(field.href ?? '', filterParents)
-          : field.href ?? '',
+          ? insertVariablesInHref(field.url ?? '', filterParents)
+          : field.url ?? '',
       );
 
       return response.data;
     },
     {
       placeholderData: [],
-      enabled: !field.options?.length && !!field.href && !disabled,
+      enabled: !field.options?.length && !!field.url && !disabled,
       staleTime: 1000 * 60 * 5, // 5 minutes
     },
   );

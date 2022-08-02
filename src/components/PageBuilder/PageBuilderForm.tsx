@@ -48,24 +48,24 @@ function RenderSelect({
   changeParent,
   parents,
 }: RenderSelectProps): JSX.Element {
-  if (!field.options?.length && !field.href) {
+  if (!field.options?.length && !field.url) {
     return <Text>Imcomplete data for select</Text>;
   }
 
   const { data, refetch } = useQuery(
-    [field.href],
+    [field.url],
     async () => {
       const response = await agent.get(
         field.parent
-          ? insertVariablesInHref(field.href ?? '', parents)
-          : field.href ?? '',
+          ? insertVariablesInHref(field.url ?? '', parents)
+          : field.url ?? '',
       );
 
       return response.data;
     },
     {
       placeholderData: [],
-      enabled: !field.options?.length && !!field.href && !disabled,
+      enabled: !field.options?.length && !!field.url && !disabled,
       staleTime: 1000 * 60 * 5, // 5 minutes
     },
   );

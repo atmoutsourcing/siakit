@@ -2,7 +2,7 @@ import create from 'zustand';
 
 type ActionType = {
   label: string;
-  href: string;
+  url: string;
 };
 
 export type OptionType = {
@@ -16,7 +16,7 @@ export type FieldType = {
   type: string;
   mask?: string;
   options?: OptionType[];
-  href?: string;
+  url?: string;
   parent?: string;
 };
 
@@ -24,14 +24,14 @@ type ListActionType = {
   label: string;
   action: {
     type: string;
-    href: string;
+    url: string;
   };
   type?: string;
 };
 
 export type ExportType = {
   label: string;
-  href: string;
+  url: string;
 };
 
 type SortType = { dataIndex: string; direction: string };
@@ -56,7 +56,7 @@ export type FormFieldType = {
   type: string;
   mask?: string;
   options?: OptionType[];
-  href?: string;
+  url?: string;
   parent?: string;
   verification?: VerificationType;
   readOnly: string;
@@ -73,7 +73,7 @@ export type ConfigType = {
     fields: FieldType[];
   };
   list: {
-    href: string;
+    url: string;
     usePagination?: boolean;
     defaultSort?: SortType;
     perPage?: number;

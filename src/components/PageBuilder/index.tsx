@@ -11,7 +11,6 @@ import { Flex } from '../Flex';
 import { Form, FormHandles, Input } from '../Form';
 import { Spinner } from '../Spinner';
 import { Table } from '../Table';
-import { Text } from '../Text';
 import { Filters } from './Filters';
 import {
   ConfigType,
@@ -90,7 +89,7 @@ export function PageBuilderPage({
       },
     ],
     async () => {
-      const response = await agent.get(config.list.href, {
+      const response = await agent.get(config.list.url, {
         params: {
           _page: currentPage,
           _limit: perPage,
@@ -128,7 +127,7 @@ export function PageBuilderPage({
       try {
         setLoading(true);
 
-        await agent.get(item.href);
+        await agent.get(item.url);
       } finally {
         setLoading(false);
       }
@@ -161,7 +160,7 @@ export function PageBuilderPage({
         <Flex flexWrap="wrap" justify="space-between" gap={8}>
           <Flex gap={8} align="center">
             {config?.actions?.map((action) => (
-              <Button type="button" onClick={() => onNavigate(action.href)}>
+              <Button type="button" onClick={() => onNavigate(action.url)}>
                 {action.label}
               </Button>
             ))}
@@ -225,7 +224,7 @@ export function PageBuilderPage({
 
                 if (action.action.type === 'redirect') {
                   newItem.onClick = (item) =>
-                    onNavigate(insertVariablesInHref(action.action.href, item));
+                    onNavigate(insertVariablesInHref(action.action.url, item));
                 }
 
                 return newItem;
