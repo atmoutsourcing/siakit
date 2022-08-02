@@ -131,7 +131,7 @@ export function Table({
           {!!actions.length && <HeaderCell isAction>Ações</HeaderCell>}
 
           {!isLoading &&
-            data.length &&
+            !!data.length &&
             data.map((item) => (
               <>
                 {headers.map((field) => {
