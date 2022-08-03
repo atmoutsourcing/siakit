@@ -3,7 +3,7 @@ import { Container, Type } from './styles';
 
 type DropdownItemProps = {
   children: string;
-  onClick: () => void;
+  onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   type?: Type;
   icon?: keyof typeof icons;
 };
@@ -17,7 +17,14 @@ export function DropdownItem({
   const Icon = icon ? icons[icon] : undefined;
 
   return (
-    <Container type={type} onClick={onClick}>
+    <Container
+      type={type}
+      onClick={(event) => {
+        if (event) {
+          onClick(event);
+        }
+      }}
+    >
       {Icon && <Icon size="14" />}
 
       {children}
