@@ -1,5 +1,3 @@
-import { FormHandles as UnformFormHandle } from '@unform/core';
-
 export { Heading } from '../components/Heading';
 export { Text } from '../components/Text';
 
@@ -76,7 +74,6 @@ export {
   RichTextInput,
   FileInput,
 } from '../components/Form';
-export type FormHandles = UnformFormHandle;
 
 export { Badge } from '../components/Badge';
 export { PageHeader } from '../components/PageHeader';
