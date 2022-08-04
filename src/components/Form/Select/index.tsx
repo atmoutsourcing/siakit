@@ -110,6 +110,14 @@ export function Select({
         isClearable
         isDisabled={disabled}
         menuPlacement={menuPlacement}
+        styles={{
+          menuPortal: (base) => ({
+            ...base,
+            zIndex: 9900,
+            pointerEvents: 'auto',
+          }),
+        }}
+        menuPortalTarget={document.body}
       />
 
       {error && <Error>{error}</Error>}

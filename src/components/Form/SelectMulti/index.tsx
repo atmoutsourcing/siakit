@@ -90,6 +90,14 @@ export function SelectMulti({
         isClearable
         isMulti
         isDisabled={disabled}
+        styles={{
+          menuPortal: (base) => ({
+            ...base,
+            zIndex: 9900,
+            pointerEvents: 'auto',
+          }),
+        }}
+        menuPortalTarget={document.body}
       />
 
       {error && <Error>{error}</Error>}
