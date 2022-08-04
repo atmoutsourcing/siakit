@@ -40,6 +40,11 @@ export const Container = styled.button<ContainerProps>`
       padding: 0 12px;
       border-radius: 6px;
       gap: 6px;
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
     `}
 
   ${({ size }) =>
@@ -47,6 +52,11 @@ export const Container = styled.button<ContainerProps>`
     css`
       height: 32px;
       padding: 0 16px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
     `}
 
   ${({ size }) =>
@@ -54,6 +64,11 @@ export const Container = styled.button<ContainerProps>`
     css`
       height: 40px;
       padding: 0 24px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
     `}
 
     ${({ variant, colorScheme, theme }) =>

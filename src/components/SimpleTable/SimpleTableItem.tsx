@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 
+import { HiInformationCircle } from 'react-icons/hi';
 import { useTheme } from 'styled-components';
 
 import { Flex } from '../Flex';
@@ -33,7 +34,7 @@ export function SimpleTableItem({
             <Popover>
               <IconButton
                 type="button"
-                icon="HiInformationCircle"
+                icon={<HiInformationCircle />}
                 colorScheme="gray"
                 variant="ghost"
               />

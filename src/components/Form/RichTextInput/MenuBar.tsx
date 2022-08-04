@@ -1,6 +1,22 @@
 import { useRef } from 'react';
 
 import { Editor as EditorProps } from '@tiptap/react';
+import {
+  TbBold,
+  TbCode,
+  TbH1,
+  TbH2,
+  TbH3,
+  TbItalic,
+  TbLink,
+  TbList,
+  TbListDetails,
+  TbListNumbers,
+  TbPhoto,
+  TbQuote,
+  TbStrikethrough,
+  TbUnlink,
+} from 'react-icons/tb';
 
 import { Flex } from '../../Flex';
 import { IconButton } from '../../IconButton';
@@ -76,7 +92,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 1 }).run()
             }
-            icon="TbH1"
+            icon={<TbH1 />}
             variant={
               editor.isActive('heading', { level: 1 }) ? 'secondary' : 'ghost'
             }
@@ -89,7 +105,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 2 }).run()
             }
-            icon="TbH2"
+            icon={<TbH2 />}
             variant={
               editor.isActive('heading', { level: 2 }) ? 'secondary' : 'ghost'
             }
@@ -102,7 +118,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 3 }).run()
             }
-            icon="TbH3"
+            icon={<TbH3 />}
             variant={
               editor.isActive('heading', { level: 3 }) ? 'secondary' : 'ghost'
             }
@@ -114,7 +130,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
         <Tooltip content="Bold">
           <IconButton
             type="button"
-            icon="TbBold"
+            icon={<TbBold />}
             onClick={() => editor.chain().focus().toggleBold().run()}
             variant={editor.isActive('bold') ? 'secondary' : 'ghost'}
           />
@@ -123,7 +139,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
         <Tooltip content="Italic">
           <IconButton
             type="button"
-            icon="TbItalic"
+            icon={<TbItalic />}
             onClick={() => editor.chain().focus().toggleItalic().run()}
             variant={editor.isActive('italic') ? 'secondary' : 'ghost'}
           />
@@ -133,7 +149,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
           <IconButton
             type="button"
             onClick={() => editor.chain().focus().toggleStrike().run()}
-            icon="TbStrikethrough"
+            icon={<TbStrikethrough />}
             variant={editor.isActive('strike') ? 'secondary' : 'ghost'}
           />
         </Tooltip>
@@ -144,7 +160,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
           <IconButton
             type="button"
             onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-            icon="TbCode"
+            icon={<TbCode />}
             variant={editor.isActive('codeBlock') ? 'secondary' : 'ghost'}
           />
         </Tooltip>
@@ -153,7 +169,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
           <IconButton
             type="button"
             onClick={() => editor.chain().focus().toggleBlockquote().run()}
-            icon="TbQuote"
+            icon={<TbQuote />}
             variant={editor.isActive('blockquote') ? 'secondary' : 'ghost'}
           />
         </Tooltip>
@@ -164,7 +180,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
               type="button"
               onClick={() => editor.chain().focus().unsetLink().run()}
               variant="secondary"
-              icon="TbUnlink"
+              icon={<TbUnlink />}
             />
           </Tooltip>
         ) : (
@@ -173,7 +189,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
               type="button"
               onClick={setLink}
               variant="ghost"
-              icon="TbLink"
+              icon={<TbLink />}
             />
           </Tooltip>
         )}
@@ -184,7 +200,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
           <IconButton
             type="button"
             onClick={() => editor.chain().focus().toggleBulletList().run()}
-            icon="TbList"
+            icon={<TbList />}
             variant={editor.isActive('bulletList') ? 'secondary' : 'ghost'}
           />
         </Tooltip>
@@ -193,7 +209,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
           <IconButton
             type="button"
             onClick={() => editor.chain().focus().toggleOrderedList().run()}
-            icon="TbListNumbers"
+            icon={<TbListNumbers />}
             variant={editor.isActive('orderedList') ? 'secondary' : 'ghost'}
           />
         </Tooltip>
@@ -202,7 +218,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
           <IconButton
             type="button"
             onClick={() => editor.chain().focus().toggleTaskList().run()}
-            icon="TbListDetails"
+            icon={<TbListDetails />}
             variant={editor.isActive('taskList') ? 'secondary' : 'ghost'}
           />
         </Tooltip>
@@ -211,7 +227,7 @@ export function MenuBar({ editor }: MenuBarProps): JSX.Element {
           <Flex padding="0 16px">
             <IconButton
               type="button"
-              icon="TbPhoto"
+              icon={<TbPhoto />}
               onClick={() => inputFileRef.current?.click()}
             />
           </Flex>

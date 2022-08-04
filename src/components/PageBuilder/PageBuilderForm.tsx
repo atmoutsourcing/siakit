@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
+import { FormHandles } from '@unform/core';
 import { AxiosInstance } from 'axios';
 import * as Yup from 'yup';
 
@@ -14,7 +15,6 @@ import { Footer } from '../Footer';
 import {
   DatePicker,
   Form,
-  FormHandles,
   Input,
   MaskInput,
   MoneyInput,

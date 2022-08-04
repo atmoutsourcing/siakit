@@ -4,7 +4,7 @@ import * as Popover from '@radix-ui/react-popover';
 import { useField } from '@unform/core';
 import { format, isValid } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
-import { HiCalendar } from 'react-icons/hi';
+import { HiCalendar, HiOutlineX } from 'react-icons/hi';
 import styled from 'styled-components';
 import { toPattern } from 'vanilla-masker';
 
@@ -172,7 +172,7 @@ export function DatePicker({
 
         <IconButton
           type="button"
-          icon="HiOutlineX"
+          icon={<HiOutlineX />}
           size="sm"
           variant="ghost"
           colorScheme="gray"

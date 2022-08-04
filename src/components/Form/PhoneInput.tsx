@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useField } from '@unform/core';
+import { HiOutlineX } from 'react-icons/hi';
 import { toPattern } from 'vanilla-masker';
 
 import { useTheme } from '../../hooks/theme';
@@ -103,7 +104,7 @@ export function PhoneInput({
 
         <IconButton
           type="button"
-          icon="HiOutlineX"
+          icon={<HiOutlineX />}
           size="sm"
           variant="ghost"
           colorScheme="gray"

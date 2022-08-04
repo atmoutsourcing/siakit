@@ -1,6 +1,5 @@
-import { useContext, useMemo } from 'react';
+import { ReactElement, useContext, useMemo } from 'react';
 
-import { icons } from '../../../helpers/icons';
 import { useTheme } from '../../../hooks/theme';
 import { Tooltip } from '../../Tooltip';
 import { SidebarContext } from '../SidebarContext';
@@ -11,8 +10,8 @@ type MenuItemProps = {
   value: string;
 
   onClick?: () => void;
-  icon?: keyof typeof icons;
-  activeIcon?: keyof typeof icons;
+  icon?: ReactElement;
+  activeIcon?: ReactElement;
 
   tooltip?: string;
 };
@@ -37,9 +36,6 @@ export function MenuItem({
 
   const shortName = children[0].toUpperCase();
 
-  const Icon = icon ? icons[icon] : undefined;
-  const ActiveIcon = activeIcon ? icons[activeIcon] : undefined;
-
   return (
     <Tooltip content={!isExpanded ? tooltip : undefined} side="right">
       <Container
@@ -57,11 +53,11 @@ export function MenuItem({
         isExpanded={!!isExpanded}
         appTheme={theme}
       >
-        {!isSelected && Icon && <Icon size="16" />}
-        {isSelected && ActiveIcon ? (
-          <ActiveIcon size="16" />
+        {!isSelected && !!icon && <>{icon}</>}
+        {isSelected && !!activeIcon ? (
+          <>{activeIcon}</>
         ) : (
-          isSelected && !ActiveIcon && Icon && <Icon size="16" />
+          isSelected && !activeIcon && !!icon && <>{icon}</>
         )}
 
         {!isExpanded && !icon && shortName}

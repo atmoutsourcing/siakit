@@ -1,14 +1,16 @@
 import { useEffect, useRef } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
+import { FormHandles } from '@unform/core';
 import { AxiosInstance } from 'axios';
+import { MdDownload, MdFilterList } from 'react-icons/md';
 
 import { insertVariablesInHref } from '../../helpers/insertVariablesInHref';
 import { useLoading } from '../../hooks/loading';
 import { Button } from '../Button';
 import { Dropdown, DropdownContent, DropdownItem } from '../Dropdown';
 import { Flex } from '../Flex';
-import { Form, FormHandles, Input } from '../Form';
+import { Form, Input } from '../Form';
 import { Spinner } from '../Spinner';
 import { Table } from '../Table';
 import { Filters } from './Filters';
@@ -135,7 +137,7 @@ export function PageBuilderPage({
 
     return (
       <Dropdown align="start">
-        <Button type="button" icon="MdDownload" variant="secondary">
+        <Button type="button" icon={<MdDownload />} variant="secondary">
           Exportar
         </Button>
 
@@ -175,7 +177,7 @@ export function PageBuilderPage({
                   type="button"
                   variant="secondary"
                   onClick={toggleFiltersVisibility}
-                  icon="MdFilterList"
+                  icon={<MdFilterList />}
                 >
                   Filtros
                 </Button>

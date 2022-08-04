@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
+import { FormHandles } from '@unform/core';
 import { AxiosInstance } from 'axios';
+import { FiX } from 'react-icons/fi';
 
 import { insertVariablesInHref } from '../../helpers/insertVariablesInHref';
 import { MaskType } from '../../helpers/masks';
@@ -12,7 +14,6 @@ import { Footer, FooterLeft } from '../Footer';
 import {
   DatePicker,
   Form,
-  FormHandles,
   Input,
   MaskInput,
   MoneyInput,
@@ -134,7 +135,7 @@ export function Filters({ agent }: FiltersProps): JSX.Element {
 
         <IconButton
           type="button"
-          icon="FiX"
+          icon={<FiX />}
           variant="ghost"
           colorScheme="gray"
           onClick={toggleFiltersVisibility}

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useField } from '@unform/core';
+import { HiOutlineX } from 'react-icons/hi';
 
 import { useTheme } from '../../hooks/theme';
 import { IconButton } from '../IconButton';
@@ -130,7 +131,7 @@ export function Input({
 
         <IconButton
           type="button"
-          icon="HiOutlineX"
+          icon={<HiOutlineX />}
           size="sm"
           variant="ghost"
           colorScheme="gray"

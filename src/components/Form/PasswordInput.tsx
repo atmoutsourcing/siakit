@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useField } from '@unform/core';
+import { HiEye, HiEyeOff, HiOutlineX } from 'react-icons/hi';
 
 import { useTheme } from '../../hooks/theme';
 import { IconButton } from '../IconButton';
@@ -95,7 +96,7 @@ export function PasswordInput({
 
         <IconButton
           type="button"
-          icon="HiOutlineX"
+          icon={<HiOutlineX />}
           size="sm"
           variant="ghost"
           colorScheme="gray"
@@ -106,7 +107,7 @@ export function PasswordInput({
 
         <IconButton
           type="button"
-          icon={isHidden ? 'HiEye' : 'HiEyeOff'}
+          icon={isHidden ? <HiEye /> : <HiEyeOff />}
           size="sm"
           variant="ghost"
           colorScheme="gray"

@@ -1,6 +1,5 @@
-import { forwardRef } from 'react';
+import { forwardRef, ReactElement } from 'react';
 
-import { icons } from '../../helpers/icons';
 import { Colors, useTheme } from '../../hooks/theme';
 import { Heading } from '../Heading';
 import { Container, Size, Variant } from './styles';
@@ -13,7 +12,7 @@ type ButtonProps = {
   variant?: Variant;
   onClick?: () => void;
   disabled?: boolean;
-  icon?: keyof typeof icons;
+  icon?: ReactElement;
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -33,20 +32,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const { colorScheme: themeColorScheme } = useTheme();
 
-    function iconSize(): number {
-      if (size === 'sm') {
-        return 12;
-      }
-
-      if (size === 'lg') {
-        return 20;
-      }
-
-      return 16;
-    }
-
-    const Icon = icon ? icons[icon] : undefined;
-
     return (
       <Container
         ref={ref}
@@ -58,7 +43,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled}
         {...rest}
       >
-        {Icon && <Icon size={iconSize()} />}
+        <>{icon}</>
 
         <Heading size={size === 'sm' ? 'xs' : 'sm'}>{children}</Heading>
       </Container>

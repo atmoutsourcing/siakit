@@ -1,11 +1,12 @@
-import { icons } from '../../../helpers/icons';
+import { ReactElement } from 'react';
+
 import { Container, Type } from './styles';
 
 type DropdownItemProps = {
   children: string;
   onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   type?: Type;
-  icon?: keyof typeof icons;
+  icon?: ReactElement;
 };
 
 export function DropdownItem({
@@ -14,8 +15,6 @@ export function DropdownItem({
   type = 'default',
   icon,
 }: DropdownItemProps): JSX.Element {
-  const Icon = icon ? icons[icon] : undefined;
-
   return (
     <Container
       type={type}
@@ -25,7 +24,7 @@ export function DropdownItem({
         }
       }}
     >
-      {Icon && <Icon size="14" />}
+      <>{icon}</>
 
       {children}
     </Container>

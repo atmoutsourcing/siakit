@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useField } from '@unform/core';
+import { HiOutlineX } from 'react-icons/hi';
 import { toPattern } from 'vanilla-masker';
 
 import { masks, MaskType } from '../../helpers/masks';
@@ -134,7 +135,7 @@ export function MaskInput({
 
         <IconButton
           type="button"
-          icon="HiOutlineX"
+          icon={<HiOutlineX />}
           size="sm"
           variant="ghost"
           colorScheme="gray"

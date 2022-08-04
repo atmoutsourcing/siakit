@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useRef } from 'react';
 
 import dot from 'dot-object';
+import { MdMoreHoriz } from 'react-icons/md';
 
 import { Colors } from '../../hooks/theme';
 import { Badge } from '../Badge';
@@ -244,7 +245,7 @@ export function Table({
                         type="button"
                         variant="ghost"
                         colorScheme="gray"
-                        icon="MdMoreHoriz"
+                        icon={<MdMoreHoriz />}
                       />
 
                       <DropdownContent>

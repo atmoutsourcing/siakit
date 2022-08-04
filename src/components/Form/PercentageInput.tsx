@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useField } from '@unform/core';
+import { HiOutlineX } from 'react-icons/hi';
 
 import { useTheme } from '../../hooks/theme';
 import { IconButton } from '../IconButton';
@@ -30,7 +31,7 @@ export function PercentageInput({
 
   function handleChange(value: string): void {
     if (value !== undefined) {
-      const valueWithoutDigit = value.replaceAll(/[^\d,]/g, '');
+      const valueWithoutDigit = String(value).replaceAll(/[^\d,]/g, '');
 
       let newValue = '0';
 
@@ -108,7 +109,7 @@ export function PercentageInput({
 
         <IconButton
           type="button"
-          icon="HiOutlineX"
+          icon={<HiOutlineX />}
           size="sm"
           variant="ghost"
           colorScheme="gray"

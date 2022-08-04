@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 import * as Dialog from '@radix-ui/react-dialog';
+import { HiOutlineX } from 'react-icons/hi';
 
 import { Heading } from '../Heading';
 import { IconButton } from '../IconButton';
@@ -39,7 +40,7 @@ export function Modal({
                         type="button"
                         variant="ghost"
                         colorScheme="gray"
-                        icon="HiOutlineX"
+                        icon={<HiOutlineX />}
                       />
                     </Dialog.Close>
                   )}

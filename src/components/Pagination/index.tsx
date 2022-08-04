@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 import { FormHandles } from '@unform/core';
+import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 
 import { Flex } from '../Flex';
 import { Form, Select } from '../Form';
@@ -101,7 +102,7 @@ export function Pagination({
             {currentPage > 2 + siblingsCount && (
               <IconButton
                 type="button"
-                icon="HiOutlineDotsHorizontal"
+                icon={<HiOutlineDotsHorizontal />}
                 variant="ghost"
                 disabled
                 colorScheme="gray"
@@ -139,7 +140,7 @@ export function Pagination({
             {currentPage + 1 + siblingsCount < lastPage && (
               <IconButton
                 type="button"
-                icon="HiOutlineDotsHorizontal"
+                icon={<HiOutlineDotsHorizontal />}
                 variant="ghost"
                 disabled
                 colorScheme="gray"

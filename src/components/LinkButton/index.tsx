@@ -1,4 +1,5 @@
-import { icons } from '../../helpers/icons';
+import { ReactElement } from 'react';
+
 import { Colors, useTheme } from '../../hooks/theme';
 import { Heading } from '../Heading';
 import { Container, Size } from './styles';
@@ -10,7 +11,7 @@ type LinkButtonProps = {
   size?: Size;
   onClick: () => void;
   disabled?: boolean;
-  icon?: keyof typeof icons;
+  icon?: ReactElement;
 };
 
 export function LinkButton({
@@ -24,8 +25,6 @@ export function LinkButton({
 }: LinkButtonProps): JSX.Element {
   const { colorScheme: themeColorScheme } = useTheme();
 
-  const Icon = icon ? icons[icon] : undefined;
-
   return (
     <Container
       type={type === 'button' ? 'button' : 'submit'}
@@ -34,7 +33,7 @@ export function LinkButton({
       onClick={onClick}
       disabled={disabled}
     >
-      {Icon && <Icon size={size === 'sm' ? 12 : 16} />}
+      <>{icon}</>
 
       <Heading size={size === 'sm' ? 'xs' : 'sm'}>{children}</Heading>
     </Container>

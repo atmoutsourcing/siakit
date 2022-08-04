@@ -2,6 +2,7 @@ import React, { useEffect, useCallback, useState } from 'react';
 
 import { useField } from '@unform/core';
 import { useDropzone } from 'react-dropzone';
+import { FiX } from 'react-icons/fi';
 import { v4 as uuid } from 'uuid';
 
 import { formatBytes } from '../../../helpers/formatBytes';
@@ -125,7 +126,7 @@ export function FileInput({ name, multiple = true }: InputProps): JSX.Element {
 
                 <IconButton
                   type="button"
-                  icon="FiX"
+                  icon={<FiX />}
                   variant="ghost"
                   colorScheme="gray"
                   onClick={() =>

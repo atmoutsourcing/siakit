@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import * as Popover from '@radix-ui/react-popover';
 import { useField } from '@unform/core';
-import { HiClock } from 'react-icons/hi';
+import { HiClock, HiOutlineX } from 'react-icons/hi';
 import styled, { css } from 'styled-components';
 import { toPattern } from 'vanilla-masker';
 
@@ -168,7 +168,7 @@ export function TimePicker({
 
         <IconButton
           type="button"
-          icon="HiOutlineX"
+          icon={<HiOutlineX />}
           size="sm"
           variant="ghost"
           colorScheme="gray"
