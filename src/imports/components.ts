@@ -42,8 +42,6 @@ export { AvatarGroup } from '../components/AvatarGroup';
 
 export { Tabs, TabList, Tab, TabPanel } from '../components/Tabs';
 
-export { Icon } from '../components/Icon';
-
 export { Modal } from '../components/Modal';
 export { Tooltip } from '../components/Tooltip';
 export { Dialog } from '../components/Dialog';
