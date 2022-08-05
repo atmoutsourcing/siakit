@@ -50,13 +50,21 @@ export const Content = styled(Card)<ContentProps>`
 
 export const ModalHeader = styled.div`
   display: flex;
+
   justify-content: space-between;
 
-  h6 {
-    padding: 16px;
+  strong {
+    padding: 14px 16px;
   }
 
   button {
-    margin: 12px;
+    margin: 8px;
   }
+`;
+
+export const Title = styled.strong`
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  flex: 1;
 `;

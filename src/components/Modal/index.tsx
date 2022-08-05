@@ -3,9 +3,8 @@ import { ReactNode } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { HiOutlineX } from 'react-icons/hi';
 
-import { Heading } from '../Heading';
 import { IconButton } from '../IconButton';
-import { Overlay, Content, ModalHeader, Size } from './styles';
+import { Overlay, Content, ModalHeader, Size, Title } from './styles';
 
 type ModalProps = {
   isOpen: boolean;
@@ -31,7 +30,7 @@ export function Modal({
               <Content size={size}>
                 <ModalHeader>
                   <Dialog.Title asChild>
-                    <Heading size="lg">{title}</Heading>
+                    <Title>{title}</Title>
                   </Dialog.Title>
 
                   {onRequestClose && (
