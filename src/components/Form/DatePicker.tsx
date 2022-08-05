@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import { useField } from '@unform/core';
 import { format, isValid } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 import { DayPicker } from 'react-day-picker';
 import { HiCalendar, HiOutlineX } from 'react-icons/hi';
 import styled from 'styled-components';
@@ -89,8 +90,8 @@ export function DatePicker({
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(defaultValue);
 
-  const [selected, setSelected] = useState<Date>();
-  const [monthSelected, setMonthSelect] = useState<Date>();
+  const [selected, setSelected] = useState<Date>(defaultValue);
+  const [monthSelected, setMonthSelect] = useState<Date>(defaultValue);
 
   function handleChange(value: string): void {
     const masked = toPattern(value, '99/99/9999');
@@ -160,7 +161,7 @@ export function DatePicker({
         <input
           id={fieldName}
           ref={inputRef}
-          defaultValue={defaultValue}
+          defaultValue={defaultValue ? format(defaultValue, 'dd/MM/yyyy') : ''}
           disabled={disabled}
           onFocus={() => setIsFocused(true)}
           onBlur={() => {
@@ -194,6 +195,7 @@ export function DatePicker({
                 onSelect={handleSelect}
                 month={monthSelected}
                 onMonthChange={setMonthSelect}
+                locale={ptBR}
               />
             </Card>
           </Popover.Content>
