@@ -1,6 +1,6 @@
 {
   "name": "@atmoutsourcing/siakit",
-  "version": "0.1.40",
+  "version": "0.1.41",
   "license": "MIT",
   "private": false,
   "main": "lib/index.js",
