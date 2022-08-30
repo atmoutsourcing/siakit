@@ -40,6 +40,7 @@
     "react/jsx-no-bind": "off",
     "react/react-in-jsx-scope": "off",
     "no-param-reassign": "off",
+    "no-nested-ternary": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {

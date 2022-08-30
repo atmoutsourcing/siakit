@@ -149,7 +149,9 @@ export function Select({
 
             backgroundColor: state.isSelected
               ? colors[colorScheme][6]
-              : colors[colorScheme][3],
+              : state.isFocused
+              ? colors[colorScheme][3]
+              : 'white',
           }),
         }}
         menuPortalTarget={document.body}
