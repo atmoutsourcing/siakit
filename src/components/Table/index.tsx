@@ -151,6 +151,20 @@ export function Table({
                     );
                   }
 
+                  if (
+                    typeof dot.pick(field.dataIndex, item) === 'boolean' &&
+                    field.render
+                  ) {
+                    return (
+                      <BodyCell align={field.align}>
+                        {field.render({
+                          value: dot.pick(field.dataIndex, item),
+                          item,
+                        })}
+                      </BodyCell>
+                    );
+                  }
+
                   if (typeof dot.pick(field.dataIndex, item) === 'object') {
                     const { type, value } = dot.pick(field.dataIndex, item) as {
                       [key: string]: string;

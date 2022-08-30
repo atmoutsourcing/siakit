@@ -45,6 +45,8 @@ export const Content = styled(Card)<ContentProps>`
   display: flex;
   flex-direction: column;
 
+  max-height: calc(100vh - 32px);
+
   ${({ size }) => sizes[size]};
 `;
 

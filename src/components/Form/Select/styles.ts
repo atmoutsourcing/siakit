@@ -80,7 +80,7 @@ export const Container = styled(Select)<ContainerProps>`
       padding: 0;
     }
 
-    .react-select__option {
+    /* .react-select__option {
       padding: 0 12px;
       height: 28px;
       display: flex;
@@ -95,19 +95,19 @@ export const Container = styled(Select)<ContainerProps>`
 
       &:hover {
         background-color: ${({ theme, colorScheme }) =>
-          theme.colors[colorScheme][4]};
+      theme.colors[colorScheme][4]};
       }
     }
 
     .react-select__option.react-select__option--is-selected {
       background-color: ${({ theme, colorScheme }) =>
-        theme.colors[colorScheme][7]};
+      theme.colors[colorScheme][5]};
     }
 
     .react-select__option.react-select__option--is-focused {
       background-color: ${({ theme, colorScheme }) =>
-        theme.colors[colorScheme][3]};
-    }
+      theme.colors[colorScheme][3]};
+    } */
   }
 
   ${({ isErrored, theme }) =>
