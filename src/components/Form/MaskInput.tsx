@@ -33,6 +33,12 @@ export function MaskInput({
 
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
+  function applyMask(value: string): string {
+    const maskedValue = toPattern(value ?? '', masks[mask]);
+
+    return maskedValue;
+  }
+
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(defaultValue);
 
@@ -125,7 +131,7 @@ export function MaskInput({
         <input
           id={fieldName}
           ref={inputRef}
-          defaultValue={defaultValue}
+          defaultValue={applyMask(defaultValue)}
           disabled={disabled}
           onBlur={handleBlur}
           onFocus={handleFocus}
