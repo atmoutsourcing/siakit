@@ -87,12 +87,6 @@ export function Table({
 }: TableProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.scrollTo(0, 0);
-    }
-  }, [data]);
-
   const hasPagination =
     !!data.length &&
     currentPage !== undefined &&
@@ -324,9 +318,23 @@ export function Table({
               <Pagination
                 totalCount={totalCount}
                 currentPage={currentPage}
-                onPageChange={onPageChange}
+                onPageChange={(value) => {
+                  onPageChange(value);
+
+                  if (containerRef.current) {
+                    containerRef.current.scrollTo(0, 0);
+                  }
+                }}
                 perPage={perPage}
-                perPageChange={perPageChange}
+                perPageChange={(value) => {
+                  if (perPageChange) {
+                    perPageChange(value);
+                  }
+
+                  if (containerRef.current) {
+                    containerRef.current.scrollTo(0, 0);
+                  }
+                }}
               />
             )}
           </>

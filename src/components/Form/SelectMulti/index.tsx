@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { useField } from '@unform/core';
+import { useTheme as useStyledTheme } from 'styled-components';
 
 import { useTheme } from '../../../hooks/theme';
 import { InputContainer, Label, Error } from '../styles';
@@ -17,6 +18,7 @@ interface Props {
   placeholder?: string;
   options: Option[];
   returnType?: 'key' | 'option';
+  menuPlacement?: 'top' | 'bottom' | 'auto';
 }
 type SelectProps = JSX.IntrinsicElements['input'] & Props;
 
@@ -27,8 +29,10 @@ export function SelectMulti({
   options,
   placeholder,
   returnType = 'key',
+  menuPlacement = 'auto',
 }: SelectProps): JSX.Element {
   const { colorScheme } = useTheme();
+  const { colors, shadows } = useStyledTheme();
 
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -90,11 +94,47 @@ export function SelectMulti({
         isClearable
         isMulti
         isDisabled={disabled}
+        menuPlacement={menuPlacement}
         styles={{
           menuPortal: (base) => ({
             ...base,
             zIndex: 9900,
             pointerEvents: 'auto',
+          }),
+          menu: (provided) => ({
+            ...provided,
+            borderRadius: 8,
+            backgroundColor: colors.cardBackground,
+            boxShadow: shadows.sm,
+            border: `1px solid ${colors.gray[3]}`,
+            padding: '8px 0',
+          }),
+          menuList: (base) => ({
+            ...base,
+            padding: 0,
+          }),
+          option: (base, state) => ({
+            ...base,
+            padding: '8px 12px',
+            display: 'flex',
+            alignItems: 'center',
+
+            fontSize: '14px',
+            color: colors.gray[12],
+
+            cursor: 'pointer',
+
+            transition: 'all 0.1s',
+
+            '&:hover': {
+              backgroundColor: colors[colorScheme][4],
+            },
+
+            backgroundColor: state.isSelected
+              ? colors[colorScheme][6]
+              : state.isFocused
+              ? colors[colorScheme][3]
+              : colors.cardBackground,
           }),
         }}
         menuPortalTarget={document.body}

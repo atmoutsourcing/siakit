@@ -8,6 +8,7 @@ import TaskList from '@tiptap/extension-task-list';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useField } from '@unform/core';
+import difference from 'lodash.difference';
 
 import { useTheme } from '../../../hooks/theme';
 import { Separator } from '../../Separator';
@@ -19,8 +20,25 @@ interface Props {
   name: string;
   label?: string;
   placeholder?: string;
+  removeOptions?: string[];
 }
 type RichTextInputProps = JSX.IntrinsicElements['input'] & Props;
+
+const defaultOptions = [
+  'heading-1',
+  'heading-2',
+  'heading-3',
+  'bold',
+  'italic',
+  'strike',
+  'code',
+  'quote',
+  'link',
+  'bullet-list',
+  'ordered-list',
+  'todo-list',
+  'image',
+];
 
 export function RichTextInput({
   name,
@@ -30,6 +48,7 @@ export function RichTextInput({
   onFocus,
   onChange,
   placeholder,
+  removeOptions = [],
 }: RichTextInputProps): JSX.Element {
   const editorRef = useRef(null);
 
@@ -167,7 +186,10 @@ export function RichTextInput({
         isErrored={!!error}
         disabled={!!disabled}
       >
-        <MenuBar editor={editor} />
+        <MenuBar
+          editor={editor}
+          options={difference(defaultOptions, removeOptions)}
+        />
 
         <Separator />
 
