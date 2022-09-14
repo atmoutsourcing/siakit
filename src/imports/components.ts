@@ -27,7 +27,7 @@ export { Alert } from '../components/Alert';
 export { Separator } from '../components/Separator';
 export { List } from '../components/List';
 export { Pagination } from '../components/Pagination';
-export { Timeline } from '../components/Timeline';
+export { Timeline, TimelineItem } from '../components/Timeline';
 export { Popover } from '../components/Popover';
 export { HoverCard } from '../components/HoverCard';
 export { Spacer } from '../components/Spacer';
