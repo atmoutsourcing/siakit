@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import { useField } from '@unform/core';
 import { HiOutlineX } from 'react-icons/hi';
@@ -100,6 +100,14 @@ export function Input({
 
     if (inputRef.current) {
       inputRef.current.value = '';
+    }
+
+    if (onChange) {
+      onChange({
+        target: {
+          value: '',
+        },
+      } as ChangeEvent<HTMLInputElement>);
     }
   }
 

@@ -41,7 +41,6 @@ type ContentProps = {
 
 export const Content = styled(Card)<ContentProps>`
   margin: 16px;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
 
