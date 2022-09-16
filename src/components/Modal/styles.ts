@@ -46,6 +46,8 @@ export const Content = styled(Card)<ContentProps>`
 
   max-height: calc(100vh - 32px);
 
+  overflow: auto;
+
   ${({ size }) => sizes[size]};
 `;
 

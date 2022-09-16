@@ -57,9 +57,119 @@ export function Dialog({
           <Overlay>
             <RadixDialog.Content asChild>
               <Content>
-                {type === 'info' && <img src={InfoIcon} alt="info" />}
-                {type === 'success' && <img src={SuccessIcon} alt="success" />}
-                {type === 'warning' && <img src={WarningIcon} alt="warning" />}
+                {type === 'info' && (
+                  <svg
+                    width="128"
+                    height="128"
+                    viewBox="0 0 128 128"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="64" cy="64" r="64" fill="url(#paint0_linear)" />
+                    <rect
+                      x="72.5333"
+                      y="102.4"
+                      width="17.0667"
+                      height="55.4667"
+                      rx="8.53333"
+                      transform="rotate(-180 72.5333 102.4)"
+                      fill="white"
+                    />
+                    <rect
+                      x="72.5333"
+                      y="42.6667"
+                      width="17.0667"
+                      height="17.0667"
+                      rx="8.53333"
+                      transform="rotate(-180 72.5333 42.6667)"
+                      fill="white"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="paint0_linear"
+                        x1="64"
+                        y1="0"
+                        x2="64"
+                        y2="128"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#7BDDF0" />
+                        <stop offset="1" stopColor="#96E1EC" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                )}
+                {type === 'success' && (
+                  <svg
+                    width="128"
+                    height="128"
+                    viewBox="0 0 128 128"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="64" cy="64" r="64" fill="url(#paint0_linear)" />
+                    <path
+                      d="M103.86 34.4376L46.7374 91.5604L20.7725 65.5955"
+                      stroke="white"
+                      strokeWidth="14.9333"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="paint0_linear"
+                        x1="0"
+                        y1="128"
+                        x2="128"
+                        y2="0"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#008256" />
+                        <stop offset="1" stopColor="#00B78E" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                )}
+                {type === 'warning' && (
+                  <svg
+                    width="128"
+                    height="128"
+                    viewBox="0 0 128 128"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="64" cy="64" r="64" fill="url(#paint0_linear)" />
+                    <rect
+                      x="55.4667"
+                      y="25.6"
+                      width="17.0667"
+                      height="55.4667"
+                      rx="8.53333"
+                      fill="white"
+                    />
+                    <rect
+                      x="55.4667"
+                      y="85.3333"
+                      width="17.0667"
+                      height="17.0667"
+                      rx="8.53333"
+                      fill="white"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="paint0_linear"
+                        x1="0"
+                        y1="64"
+                        x2="128"
+                        y2="64"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#FFDB78" />
+                        <stop offset="1" stopColor="#FABD5C" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                )}
                 {type === 'danger' && (
                   <svg
                     width="128"

@@ -9,5 +9,4 @@ export const OverlayBase = styled.div`
   bottom: 0;
   display: grid;
   place-items: center;
-  overflow-y: auto;
 `;
