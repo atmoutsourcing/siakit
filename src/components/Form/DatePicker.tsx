@@ -97,6 +97,8 @@ export function DatePicker({
   const [selected, setSelected] = useState<Date>(defaultValue);
   const [monthSelected, setMonthSelect] = useState<Date>(defaultValue);
 
+  const [open, setOpen] = useState(false);
+
   function handleChange(value: string): void {
     const masked = toPattern(value, '99/99/9999');
 
@@ -123,6 +125,8 @@ export function DatePicker({
       const formattedDate = format(value, 'dd/MM/yyyy');
 
       handleChange(formattedDate);
+
+      setOpen(false);
     }
   }
 
@@ -186,7 +190,7 @@ export function DatePicker({
           visible={!!isFilled && !disabled}
         />
 
-        <Popover.Root>
+        <Popover.Root open={open} onOpenChange={setOpen}>
           <TriggerButton tabIndex={-1} disabled={disabled}>
             <HiCalendar size="16" />
           </TriggerButton>
