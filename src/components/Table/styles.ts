@@ -41,6 +41,7 @@ export const BodyCell = styled.div<BodyCellProps>`
   border-top: 1px solid ${({ theme }) => theme.colors.gray[6]};
 
   display: flex;
+  align-items: center;
 
   font-size: 0.875rem;
 
