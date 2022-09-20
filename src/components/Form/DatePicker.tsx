@@ -51,6 +51,10 @@ const Card = styled(Popover.Content)<CardProps>`
     color: ${({ theme, colorScheme }) => theme.colors[colorScheme][11]};
   }
 
+  .rdp-day_today {
+    background-color: ${({ theme }) => theme.colors.orange[4]};
+  }
+
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.cardBackground};
   box-shadow: ${({ theme }) => theme.shadows.sm};
