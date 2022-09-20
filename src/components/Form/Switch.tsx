@@ -53,18 +53,20 @@ const SwitchLabel = styled.label`
   color: ${({ theme }) => theme.colors.gray[12]};
 `;
 
-interface Props {
+type SwitchProps = {
   name: string;
   label?: string;
+  value?: boolean;
   onChange?: (checked: boolean) => void;
   direction?: 'vertical' | 'horizontal';
-}
-type SwitchProps = JSX.IntrinsicElements['input'] & Props;
+  disabled?: boolean;
+};
 
 export function Switch({
   name,
   label,
   disabled,
+  value,
   onChange,
   direction = 'horizontal',
 }: SwitchProps): JSX.Element {
@@ -77,7 +79,9 @@ export function Switch({
     error,
   } = useField(name);
 
-  const [checked, setChecked] = useState<boolean>(defaultValue);
+  const [checked, setChecked] = useState<boolean>(
+    typeof value === 'boolean' ? value : defaultValue,
+  );
 
   useEffect(() => {
     registerField({
@@ -85,8 +89,8 @@ export function Switch({
       getValue: () => {
         return checked;
       },
-      setValue: (ref, value: boolean) => {
-        setChecked(value);
+      setValue: (ref, data: boolean) => {
+        setChecked(data);
       },
       clearValue: () => {
         setChecked(false);
