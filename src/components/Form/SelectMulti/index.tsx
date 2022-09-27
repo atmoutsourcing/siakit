@@ -19,7 +19,7 @@ interface Props {
   options: Option[];
   returnType?: 'key' | 'option';
   menuPlacement?: 'top' | 'bottom' | 'auto';
-  onChange: (options: Option[]) => void;
+  onChange?: (options: Option[]) => void;
 }
 type SelectProps = JSX.IntrinsicElements['input'] & Props;
 
