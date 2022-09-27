@@ -19,6 +19,7 @@ interface Props {
   options: Option[];
   returnType?: 'key' | 'option';
   menuPlacement?: 'top' | 'bottom' | 'auto';
+  onChange: (options: Option[]) => void;
 }
 type SelectProps = JSX.IntrinsicElements['input'] & Props;
 
@@ -30,6 +31,7 @@ export function SelectMulti({
   placeholder,
   returnType = 'key',
   menuPlacement = 'auto',
+  onChange,
 }: SelectProps): JSX.Element {
   const { colorScheme } = useTheme();
   const { colors, shadows } = useStyledTheme();
@@ -90,6 +92,10 @@ export function SelectMulti({
         value={selected}
         onChange={(option) => {
           setSelected(option as Option[]);
+
+          if (onChange) {
+            onChange(option as Option[]);
+          }
         }}
         isClearable
         isMulti
