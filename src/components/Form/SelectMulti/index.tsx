@@ -8,7 +8,7 @@ import { InputContainer, Label, Error } from '../styles';
 import { Container } from './styles';
 
 type Option = {
-  value: string;
+  value: number | string;
   label: string;
 };
 
@@ -41,16 +41,16 @@ export function SelectMulti({
   const [selected, setSelected] = useState<Option[]>(defaultValue || []);
 
   useEffect(() => {
-    registerField<Option[] | string[]>({
+    registerField<Option[] | string[] | number[]>({
       name: fieldName,
       getValue: () => {
         if (returnType === 'option') {
           return selected || '';
         }
 
-        return selected?.map((item) => item.value) || [];
+        return (selected?.map((item) => item.value) as []) || [];
       },
-      setValue: (_, value: Option[] | string[]) => {
+      setValue: (_, value: Option[] | string[] | number[]) => {
         if (typeof value[0] === 'object') {
           setSelected(value as Option[]);
 
