@@ -31,6 +31,8 @@ export const Container = styled(RadixTabs.Trigger)<ContainerProps>`
 
   gap: 6px;
 
+  white-space: nowrap;
+
   &:hover {
     background-color: ${({ theme, colorScheme }) =>
       theme.colors[colorScheme][3]};

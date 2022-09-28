@@ -9,6 +9,7 @@ export const Tabs = styled(RadixTabs.Root)`
 export const TabList = styled(RadixTabs.List)`
   position: relative;
   display: flex;
+  overflow: auto;
 
   &:after {
     position: absolute;
