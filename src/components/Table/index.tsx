@@ -134,136 +134,141 @@ export function Table({
             !!data.length &&
             data.map((item) => (
               <>
-                {headers.map((field) => {
-                  if (dot.pick(field.dataIndex, item) === null) {
+                {headers
+                  .filter((headerItem) => headerItem.visible !== false)
+                  .map((field) => {
+                    if (dot.pick(field.dataIndex, item) === null) {
+                      return <BodyCell />;
+                    }
+
+                    if (dot.pick(field.dataIndex, item) && field.render) {
+                      return (
+                        <BodyCell align={field.align}>
+                          {field.render({
+                            value: dot.pick(field.dataIndex, item),
+                            item,
+                          })}
+                        </BodyCell>
+                      );
+                    }
+
+                    if (
+                      typeof dot.pick(field.dataIndex, item) === 'number' &&
+                      field.render
+                    ) {
+                      return (
+                        <BodyCell align={field.align}>
+                          {field.render({
+                            value: dot.pick(field.dataIndex, item),
+                            item,
+                          })}
+                        </BodyCell>
+                      );
+                    }
+
+                    if (
+                      typeof dot.pick(field.dataIndex, item) === 'boolean' &&
+                      field.render
+                    ) {
+                      return (
+                        <BodyCell align={field.align}>
+                          {field.render({
+                            value: dot.pick(field.dataIndex, item),
+                            item,
+                          })}
+                        </BodyCell>
+                      );
+                    }
+
+                    if (typeof dot.pick(field.dataIndex, item) === 'object') {
+                      const { type, value } = dot.pick(
+                        field.dataIndex,
+                        item,
+                      ) as {
+                        [key: string]: string;
+                      };
+
+                      if (type === 'BADGE') {
+                        const { color } = dot.pick(field.dataIndex, item) as {
+                          [key: string]: string;
+                        };
+
+                        return (
+                          <BodyCell align={field.align}>
+                            <Badge color={color.toLowerCase() as Colors}>
+                              {value}
+                            </Badge>
+                          </BodyCell>
+                        );
+                      }
+
+                      if (type === 'URL') {
+                        const { label } = dot.pick(field.dataIndex, item) as {
+                          [key: string]: string;
+                        };
+
+                        return (
+                          <BodyCell align={field.align}>
+                            <LinkButton onClick={() => window.open(value)}>
+                              {label}
+                            </LinkButton>
+                          </BodyCell>
+                        );
+                      }
+
+                      if (type === 'ICCID') {
+                        return (
+                          <BodyCell align={field.align}>
+                            <p>
+                              {value.slice(0, 10)}
+                              <span
+                                style={{
+                                  fontWeight: 'bold',
+                                  color: 'var(--color-green)',
+                                }}
+                              >
+                                {value.slice(10)}
+                              </span>
+                            </p>
+                          </BodyCell>
+                        );
+                      }
+
+                      if (type === 'IMEI') {
+                        return (
+                          <BodyCell align={field.align}>
+                            <p>
+                              {value.slice(0, 9)}
+                              <span
+                                style={{
+                                  fontWeight: 'bold',
+                                  color: 'var(--color-red)',
+                                }}
+                              >
+                                {value.slice(9)}
+                              </span>
+                            </p>
+                          </BodyCell>
+                        );
+                      }
+
+                      return (
+                        <BodyCell align={field.align}>
+                          {JSON.stringify(dot.pick(field.dataIndex, item))}
+                        </BodyCell>
+                      );
+                    }
+
+                    if (field.dataIndex) {
+                      return (
+                        <BodyCell align={field.align}>
+                          {dot.pick(field.dataIndex, item)}
+                        </BodyCell>
+                      );
+                    }
+
                     return <BodyCell />;
-                  }
-
-                  if (dot.pick(field.dataIndex, item) && field.render) {
-                    return (
-                      <BodyCell align={field.align}>
-                        {field.render({
-                          value: dot.pick(field.dataIndex, item),
-                          item,
-                        })}
-                      </BodyCell>
-                    );
-                  }
-
-                  if (
-                    typeof dot.pick(field.dataIndex, item) === 'number' &&
-                    field.render
-                  ) {
-                    return (
-                      <BodyCell align={field.align}>
-                        {field.render({
-                          value: dot.pick(field.dataIndex, item),
-                          item,
-                        })}
-                      </BodyCell>
-                    );
-                  }
-
-                  if (
-                    typeof dot.pick(field.dataIndex, item) === 'boolean' &&
-                    field.render
-                  ) {
-                    return (
-                      <BodyCell align={field.align}>
-                        {field.render({
-                          value: dot.pick(field.dataIndex, item),
-                          item,
-                        })}
-                      </BodyCell>
-                    );
-                  }
-
-                  if (typeof dot.pick(field.dataIndex, item) === 'object') {
-                    const { type, value } = dot.pick(field.dataIndex, item) as {
-                      [key: string]: string;
-                    };
-
-                    if (type === 'BADGE') {
-                      const { color } = dot.pick(field.dataIndex, item) as {
-                        [key: string]: string;
-                      };
-
-                      return (
-                        <BodyCell align={field.align}>
-                          <Badge color={color.toLowerCase() as Colors}>
-                            {value}
-                          </Badge>
-                        </BodyCell>
-                      );
-                    }
-
-                    if (type === 'URL') {
-                      const { label } = dot.pick(field.dataIndex, item) as {
-                        [key: string]: string;
-                      };
-
-                      return (
-                        <BodyCell align={field.align}>
-                          <LinkButton onClick={() => window.open(value)}>
-                            {label}
-                          </LinkButton>
-                        </BodyCell>
-                      );
-                    }
-
-                    if (type === 'ICCID') {
-                      return (
-                        <BodyCell align={field.align}>
-                          <p>
-                            {value.slice(0, 10)}
-                            <span
-                              style={{
-                                fontWeight: 'bold',
-                                color: 'var(--color-green)',
-                              }}
-                            >
-                              {value.slice(10)}
-                            </span>
-                          </p>
-                        </BodyCell>
-                      );
-                    }
-
-                    if (type === 'IMEI') {
-                      return (
-                        <BodyCell align={field.align}>
-                          <p>
-                            {value.slice(0, 9)}
-                            <span
-                              style={{
-                                fontWeight: 'bold',
-                                color: 'var(--color-red)',
-                              }}
-                            >
-                              {value.slice(9)}
-                            </span>
-                          </p>
-                        </BodyCell>
-                      );
-                    }
-
-                    return (
-                      <BodyCell align={field.align}>
-                        {JSON.stringify(dot.pick(field.dataIndex, item))}
-                      </BodyCell>
-                    );
-                  }
-
-                  if (field.dataIndex) {
-                    return (
-                      <BodyCell align={field.align}>
-                        {dot.pick(field.dataIndex, item)}
-                      </BodyCell>
-                    );
-                  }
-
-                  return <BodyCell />;
-                })}
+                  })}
 
                 {!!actions.length && (
                   <ActionCell>
