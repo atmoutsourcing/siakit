@@ -98,30 +98,35 @@ export function Table({
       <Container
         ref={containerRef}
         cols={
-          headers.length && actions.length ? headers.length + 1 : headers.length
+          headers.filter((item) => item.visible !== false).length &&
+          actions.length
+            ? headers.filter((item) => item.visible !== false).length + 1
+            : headers.filter((item) => item.visible !== false).length
         }
         haveActions={!!actions.length}
       >
         <div>
-          {headers.map((field) => (
-            <HeaderCell
-              key={field.dataIndex}
-              dataIndex={field.dataIndex}
-              isSort={!!field.sort}
-              sort={
-                sort?.dataIndex === field.dataIndex
-                  ? sort
-                  : {
-                      dataIndex: field.dataIndex,
-                      direction: '',
-                    }
-              }
-              onSort={onSort}
-              align={field.align}
-            >
-              {field.label}
-            </HeaderCell>
-          ))}
+          {headers
+            .filter((item) => item.visible !== false)
+            .map((field) => (
+              <HeaderCell
+                key={field.dataIndex}
+                dataIndex={field.dataIndex}
+                isSort={!!field.sort}
+                sort={
+                  sort?.dataIndex === field.dataIndex
+                    ? sort
+                    : {
+                        dataIndex: field.dataIndex,
+                        direction: '',
+                      }
+                }
+                onSort={onSort}
+                align={field.align}
+              >
+                {field.label}
+              </HeaderCell>
+            ))}
 
           {!!actions.length && <HeaderCell isAction>Ações</HeaderCell>}
 
