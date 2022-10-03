@@ -9,6 +9,7 @@ export const Content = styled(TooltipContent)`
   max-width: 192px;
 
   p {
+    text-align: center;
     color: ${({ theme }) => theme.colors.gray[1]};
     font-size: 14px;
   }
