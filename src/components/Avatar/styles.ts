@@ -84,7 +84,7 @@ export const Container = styled.span<ContainerProps>`
   align-items: center;
 
   ${({ colorScheme, theme }) => css`
-    background-color: ${theme.colors[colorScheme][3]};
+    background-color: ${theme.colors[colorScheme][4]};
 
     strong,
     h4,

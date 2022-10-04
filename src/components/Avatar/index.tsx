@@ -41,7 +41,7 @@ export function Avatar({
 
   function renderShortName(): string {
     if (name) {
-      const nameSplitted = name.split(' ');
+      const nameSplitted = name.split(' ').filter((item) => Boolean(item));
 
       if (nameSplitted.length === 1) {
         return nameSplitted[0][0].toUpperCase();
