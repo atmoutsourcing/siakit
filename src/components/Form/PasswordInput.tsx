@@ -5,12 +5,21 @@ import { HiEye, HiEyeOff, HiOutlineX } from 'react-icons/hi';
 
 import { useTheme } from '../../hooks/theme';
 import { IconButton } from '../IconButton';
-import { InputContainer, Label, InputBody, Error } from './styles';
+import { Text } from '../Text';
+import {
+  InputContainer,
+  Label,
+  InputBody,
+  Error,
+  StrenghtBar,
+  StrenghtBarContainer,
+} from './styles';
 
 interface Props {
   name: string;
   label?: string;
   placeholder?: string;
+  strength?: number;
 }
 type PasswordInputProps = JSX.IntrinsicElements['input'] & Props;
 
@@ -18,6 +27,7 @@ export function PasswordInput({
   name,
   label,
   disabled,
+  strength,
   ...rest
 }: PasswordInputProps): JSX.Element {
   const { colorScheme } = useTheme();
@@ -116,6 +126,22 @@ export function PasswordInput({
           disabled={disabled}
         />
       </InputBody>
+
+      {typeof strength === 'number' && (
+        <StrenghtBarContainer gap={4} align="center" strength={strength}>
+          <StrenghtBar />
+          <StrenghtBar />
+          <StrenghtBar />
+
+          {strength > 0 && (
+            <Text size="xs">
+              {strength > 0 && strength <= 30 && 'Senha fraca'}
+              {strength > 30 && strength < 70 && 'Senha média'}
+              {strength >= 70 && 'Senha forte'}
+            </Text>
+          )}
+        </StrenghtBarContainer>
+      )}
 
       {error && <Error>{error}</Error>}
     </InputContainer>

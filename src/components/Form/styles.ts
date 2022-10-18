@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 import ResizerIcon from '../../assets/icons/resizer.svg';
 import { Colors } from '../../hooks/theme';
+import { Flex } from '../Flex';
 
 type ContainerProps = {
   disabled: boolean;
@@ -334,4 +335,55 @@ export const LanguageItem = styled.div`
   p {
     font-size: 14px;
   }
+`;
+
+type StrenghtBarContainerProps = {
+  strength: number;
+};
+
+export const StrenghtBarContainer = styled(Flex)<StrenghtBarContainerProps>`
+  ${({ strength }) =>
+    strength > 0 &&
+    strength <= 30 &&
+    css`
+      div:nth-of-type(1) {
+        background-color: ${({ theme }) => theme.colors.red[7]};
+      }
+    `}
+
+  ${({ strength }) =>
+    strength > 30 &&
+    strength < 70 &&
+    css`
+      div:nth-of-type(1) {
+        background-color: ${({ theme }) => theme.colors.red[7]};
+      }
+
+      div:nth-of-type(2) {
+        background-color: ${({ theme }) => theme.colors.yellow[7]};
+      }
+    `}
+
+    ${({ strength }) =>
+    strength >= 70 &&
+    css`
+      div:nth-of-type(1) {
+        background-color: ${({ theme }) => theme.colors.red[7]};
+      }
+
+      div:nth-of-type(2) {
+        background-color: ${({ theme }) => theme.colors.yellow[7]};
+      }
+
+      div:nth-of-type(3) {
+        background-color: ${({ theme }) => theme.colors.green[7]};
+      }
+    `}
+`;
+
+export const StrenghtBar = styled.div`
+  flex: 1;
+  height: 6px;
+  background-color: ${({ theme }) => theme.colors.gray[4]};
+  border-radius: 4px;
 `;

@@ -151,7 +151,7 @@ export function Select({
               ? colors[colorScheme][6]
               : state.isFocused
               ? colors[colorScheme][3]
-              : '',
+              : colors.cardBackground,
           }),
         }}
         menuPortalTarget={document.body}
